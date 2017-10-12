@@ -46,25 +46,25 @@ namespace Idfy.Signature.Client
                     .GetResult();
             }
 
-            public static string Serialize<T>(T obj)
+            public static string Serialize<T>(this T obj)
             {
                 var json = Serializer.Serialize(obj);
                 return json;
             }
 
-            public static string SerializeAndFormat<T>(T obj)
+            public static string SerializeAndFormat<T>(this T obj)
             {
                 var json = Serializer.Serialize(obj);
                 return Formatter.Format(json);
             }
 
-            public static T Deserialize<T>(string json)
+            public static T Deserialize<T>(this string json)
             {
                 var obj = Serializer.Deserialize<T>(json);
                 return obj;
             }
 
-            internal static SecureString ToSecureString(string value)
+            internal static SecureString ToSecureString(this string value)
             {
                 var secure = new SecureString();
                 foreach (var c in value)
@@ -74,7 +74,7 @@ namespace Idfy.Signature.Client
                 return secure;
             }
 
-            internal static string SecureStringToString(SecureString value)
+            internal static string SecureStringToString(this SecureString value)
             {
                 IntPtr valuePtr = IntPtr.Zero;
                 try

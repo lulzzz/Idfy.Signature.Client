@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Models;
 using Idfy.Signature.Models.Attachment;
@@ -37,81 +38,80 @@ namespace Idfy.Signature.Client.Client
             }
         }
 
-        public async Task<CreateDocumentResponse> Create(CreateDocumentRequest request)
+        public async Task<CreateDocumentResponse> CreateDocument(CreateDocumentRequest request)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.Create(AccountId);
 
-            var result = await HttpWrapper.RunPostQueryAsync(url, request, Token);
+            var result = await HttpWrapper.RunPostAsync(url, request, Token);
 
-            return Extensions.Deserialize<CreateDocumentResponse>(result);
+            return result.Deserialize<CreateDocumentResponse>();
         }
 
-        public async Task<CreateDocumentResponse> Get(Guid documentId)
+        public async Task<CreateDocumentResponse> GetDocument(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.Get(AccountId, documentId);
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
-            return Extensions.Deserialize<CreateDocumentResponse>(result);
+            return result.Deserialize<CreateDocumentResponse>();
         }
 
-        public async Task<UpdateDocumentRequest> Update(Guid documentId, UpdateDocumentRequest request)
+        public async Task<UpdateDocumentRequest> UpdateDocument(Guid documentId, UpdateDocumentRequest request)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.Update(AccountId, documentId);
 
-            var result = await HttpWrapper.RunPutAsync(url, request, Token);
+            var result = await HttpWrapper.RunPatchAsync(url, request, Token);
 
-            return Extensions.Deserialize<UpdateDocumentRequest>(result);
+            return result.Deserialize<UpdateDocumentRequest>();
         }
 
-        public async Task Cancel(Guid documentId)
+        public async Task CancelDocument(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.Cancel(AccountId, documentId);
-
-            var result = await HttpWrapper.RunPutAsync(url, "", Token);
+            await HttpWrapper.RunPutAsync(url, "", Token);
         }
 
-        public async Task<DocumentStatus> GetStatus(Guid documentId)
+        public async Task<DocumentStatus> GetDocumentStatus(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.Status(AccountId, documentId);
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
 
-            return Extensions.Deserialize<DocumentStatus>(result);
+            return result.Deserialize<DocumentStatus>();
         }
         
-        public async Task<DocumentInfoResponse> GetSummary(Guid documentId)
+        public async Task<DocumentInfoResponse> GetDocumentSummary(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.GetSummary(AccountId, documentId);
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
 
-            return Extensions.Deserialize<DocumentInfoResponse>(result);
+            return result.Deserialize<DocumentInfoResponse>();
         }
 
-        public async Task<DocumentInfoResponse> List(DocumentInfoRequest request)
+        public async Task<DocumentInfoResponse> ListDocuments(DocumentInfoRequest request)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.GetList(AccountId);
 
-            var result = await HttpWrapper.RunPostQueryAsync(url, request, Token);
+            var result = await HttpWrapper.RunPostAsync(url, request, Token);
 
-            return Extensions.Deserialize<DocumentInfoResponse>(result);
+            return result.Deserialize<DocumentInfoResponse>();
         }
 
-        public async Task<DocumentFileResponse> GetDocumentFile(Guid documentId, FileFormat? fileFormat)
+        public async Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat? fileFormat)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.GetDocumentFile(AccountId, documentId, fileFormat);
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
 
-            return Extensions.Deserialize<DocumentFileResponse>(result);
+            return result.Deserialize<DocumentFileResponse>();
         }
 
 
@@ -120,9 +120,9 @@ namespace Idfy.Signature.Client.Client
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.AddAttachment(AccountId);
 
-            var result = await HttpWrapper.RunPostQueryAsync(url, request, Token);
+            var result = await HttpWrapper.RunPostAsync(url, request, Token);
 
-            var attachment = Extensions.Deserialize<AttachmentResponse>(result);
+            var attachment = result.Deserialize<AttachmentResponse>();
 
             return attachment.Id;
         }
@@ -134,7 +134,37 @@ namespace Idfy.Signature.Client.Client
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
 
-            return Extensions.Deserialize<Attachment>(result);
+            return result.Deserialize<Attachment>();
+        }
+
+        public async Task<SignerResponse> GetSigner(Guid documentId, Guid signerId)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEnpoints.GetSigner(AccountId, documentId, signerId);
+            var result = await HttpWrapper.RunGetQueryAsync(url, Token);
+            return result.Deserialize<SignerResponse>();
+        }
+
+        public async Task<SignerResponse> AddSigner(Guid documentId, Signer signer)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEnpoints.AddSigner(AccountId, documentId);
+            var result = await HttpWrapper.RunPostAsync(url, signer, Token);
+            return result.Deserialize<SignerResponse>();
+        }
+
+        public async Task RemoveSigner(Guid documentId, Guid signerId)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEnpoints.RemoveSigner(AccountId, documentId, signerId);
+            await HttpWrapper.RunDeleteAsync(url, Token);
+        }
+        public async Task<IEnumerable<SignerResponse>> ListSigners(Guid documentId)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEnpoints.ListSigners(AccountId, documentId);
+            var response = await HttpWrapper.RunGetQueryAsync(url, Token);
+            return response.Deserialize<IEnumerable<SignerResponse>>();
         }
 
     }

@@ -35,5 +35,10 @@ namespace Idfy.Signature.Client.Client
 
         #endregion
 
+        internal static string GetSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}?signerId={signerId}";
+        internal static string AddSigner(Guid accountId, Guid documentId) => $"api/signers/{accountId}/{documentId}";
+        internal static string RemoveSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}?signerId={signerId}";
+        internal static string UpdateSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}?signerId={signerId}";
+        internal static string ListSigners(Guid accountId, Guid documentId) => $"api/signers/list/{accountId}/{documentId}";
     }
 }

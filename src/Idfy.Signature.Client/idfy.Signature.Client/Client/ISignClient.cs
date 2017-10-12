@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Models.Attachment;
 using Idfy.Signature.Models.DocumentFile;
@@ -15,44 +16,44 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<CreateDocumentResponse> Create(CreateDocumentRequest request);
+        Task<CreateDocumentResponse> CreateDocument(CreateDocumentRequest request);
         /// <summary>
         /// Get the entire document data object except data to sign
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<CreateDocumentResponse> Get(Guid documentId);
+        Task<CreateDocumentResponse> GetDocument(Guid documentId);
         /// <summary>
         /// Update an asynchronous signing process
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<UpdateDocumentRequest> Update(Guid documentId, UpdateDocumentRequest request);
+        Task<UpdateDocumentRequest> UpdateDocument(Guid documentId, UpdateDocumentRequest request);
         /// <summary>
         /// Cancel an async sign job
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task Cancel(Guid documentId);
+        Task CancelDocument(Guid documentId);
         /// <summary>
         /// Get document status
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<DocumentStatus> GetStatus(Guid documentId);
+        Task<DocumentStatus> GetDocumentStatus(Guid documentId);
 
         /// <summary>
         /// Get information about a specific document
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<DocumentInfoResponse> GetSummary(Guid documentId);
+        Task<DocumentInfoResponse> GetDocumentSummary(Guid documentId);
         /// <summary>
         /// Query your documents
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<DocumentInfoResponse> List(DocumentInfoRequest request);
+        Task<DocumentInfoResponse> ListDocuments(DocumentInfoRequest request);
 
         /// <summary>
         /// Get a document file
@@ -60,7 +61,7 @@ namespace Idfy.Signature.Client.Client
         /// <param name="documentId"></param>
         /// <param name="fileFormat"></param>
         /// <returns></returns>
-        Task<DocumentFileResponse> GetDocumentFile(Guid documentId, FileFormat? fileFormat);
+        Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat? fileFormat);
 
         /// <summary>
         /// Add an attachement to use in the sign process. Returns attachment ID
@@ -75,6 +76,33 @@ namespace Idfy.Signature.Client.Client
         /// <param name="attachmentId"></param>
         /// <returns></returns>
         Task<Attachment> GetAttachment(Guid attachmentId);
+
+        /// <summary>
+        /// Get a signer
+        /// </summary>
+        /// <returns></returns>
+        Task<SignerResponse> GetSigner(Guid documentId, Guid signerId);
+        
+        /// <summary>
+        /// Adds a signer to an existing document
+        /// </summary>
+        /// <returns></returns>
+        Task<SignerResponse> AddSigner(Guid documentId, Signer signer);
+
+        /// <summary>
+        /// Removes a signer from a document
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <param name="signerId"></param>
+        /// <returns></returns>
+        Task RemoveSigner(Guid documentId, Guid signerId);
+
+        /// <summary>
+        /// Lists all the signers for a an existing document
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <returns></returns>
+        Task<IEnumerable<SignerResponse>> ListSigners(Guid documentId);
 
 
 

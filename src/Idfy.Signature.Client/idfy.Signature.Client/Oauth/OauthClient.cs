@@ -58,7 +58,7 @@ namespace Idfy.Signature.Client.Oauth
             if (_cache.Contains(cacheKey))
             {
                 var cachedToken = _cache[cacheKey] as SecureString;
-                return Extensions.SecureStringToString(cachedToken);
+                return cachedToken.SecureStringToString();
             }
 
             var headervalue = new AuthenticationHeaderValue("Basic",
@@ -82,8 +82,8 @@ namespace Idfy.Signature.Client.Oauth
                 if (result.IsSuccessStatusCode)
                 {
                     var raw = Extensions.RunSync(() => result.Content.ReadAsStringAsync());
-                    var tokenData = Extensions.Deserialize<AccessToken>(raw);
-                    var secureToken = Extensions.ToSecureString(tokenData.access_token);
+                    var tokenData = raw.Deserialize<AccessToken>();
+                    var secureToken = tokenData.access_token.ToSecureString();
                     _cache.Add(cacheKey, secureToken, DateTimeOffset.UtcNow.AddSeconds(tokenData.expires_in - 1000));
                     return tokenData.access_token;
                 }
