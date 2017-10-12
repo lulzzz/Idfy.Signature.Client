@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Idfy.Signature.Models</id>
+    <version>$version$</version>
+	<authors>Idfy Norge AS</authors>
+    <description>Idfy signature models</description>
+
+  </metadata>
+  <files>
+    <file src="bin\Release\Idfy.Signature.Models.dll" target="lib\net45" />
+    <file src="bin\Release\Idfy.Signature.Models.xml" target="lib\net45" />
+  </files>
+</package>

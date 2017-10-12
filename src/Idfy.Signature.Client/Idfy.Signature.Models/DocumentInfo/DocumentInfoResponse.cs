@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using Idfy.Signature.Models.Misc;
+
+namespace Idfy.Signature.Models.DocumentInfo
+{
+    public class DocumentInfoResponse
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime? LastUpdated { get; set; }
+        public DateTime? Deadline { get; set; }
+        public DateTime? SignedDate { get; set; }
+
+        public DocumentStatus Status { get; set; }
+        public string ExternalId { get; set; }
+        public IList<DocumentSignatures> DocumentSignatures { get; set; }
+        public int RequiredSignatures { get; set; }
+        public int CurrentSignatures { get; set; }
+        public string Tags { get; set; }
+        public List<Guid> Attachments { get; set; }
+    }
+
+    public class DocumentSignatures
+    {
+        public string NameOfSigner { get; set; }
+        public string IdOfSigner { get; set; }
+        public DateTime? SignedTime { get; set; }
+    }
+
+
+   
+}

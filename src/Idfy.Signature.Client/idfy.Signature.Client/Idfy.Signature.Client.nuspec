@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Idfy.Signature.Client</id>
+    <version>$version$</version>
+    <!--<version>1.0.0</version>-->
+    <authors>Idfy Norge AS</authors>
+    <owners>Idfy Norge AS</owners>
+    <title>Signature client for Idfy Signature API</title>
+      <iconUrl>https://signerefiles.blob.core.windows.net/img/nuget-icon-128x128.png</iconUrl>
+    <description>
+      Signature client for Idfy Signature API
+    </description>
+    <projectUrl>https://github.com/idfy-io/Idfy.Signature.Client</projectUrl>
+    <tags>signature idfy bankid sign nemid</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\Idfy.Signature.Client.dll" target="lib\net45" />
+    <file src="bin\Release\Idfy.Signature.Models.dll" target="lib\net45" />
+    <file src="bin\Release\Idfy.Signature.Client.xml" target="lib\net45" />
+    <file src="bin\Release\Idfy.Signature.Models.xml" target="lib\net45" />
+    
+  </files>
+</package>
