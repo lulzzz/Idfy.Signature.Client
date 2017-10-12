@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "idfy.Signature.Client", "idfy.Signature.Client\idfy.Signature.Client.csproj", "{20D77DB8-5916-4B53-8FB2-359FF68246F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idfy.Signature.Client", "idfy.Signature.Client\Idfy.Signature.Client.csproj", "{20D77DB8-5916-4B53-8FB2-359FF68246F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idfy.Signature.Models", "Idfy.Signature.Models\Idfy.Signature.Models.csproj", "{673AE838-68D8-4444-A366-B80A44324714}"
 EndProject

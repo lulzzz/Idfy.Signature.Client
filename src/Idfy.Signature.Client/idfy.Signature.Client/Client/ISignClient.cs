@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Models.Attachment;
 using Idfy.Signature.Models.DocumentFile;
@@ -7,7 +6,7 @@ using Idfy.Signature.Models.DocumentInfo;
 using Idfy.Signature.Models.Misc;
 using Idfy.Signature.Models.Sign;
 
-namespace idfy.Signature.Client.Client
+namespace Idfy.Signature.Client.Client
 {
     public interface ISignClient
     {

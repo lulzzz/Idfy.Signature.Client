@@ -1,8 +1,8 @@
 ﻿using System;
-using idfy.Signature.Client.Oauth;
+using Idfy.Signature.Client.Oauth;
 using Idfy.Signature.Models;
 
-namespace idfy.Signature.Client.Client
+namespace Idfy.Signature.Client.Client
 {
     public class BaseSignClient
     {

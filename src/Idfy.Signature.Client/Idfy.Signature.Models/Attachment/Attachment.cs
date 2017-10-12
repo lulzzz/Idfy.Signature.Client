@@ -1,4 +1,4 @@
-﻿namespace idfy.Signature.Models.Attachment
+﻿namespace Idfy.Signature.Models.Attachment
 {
     public class Attachment
     {
