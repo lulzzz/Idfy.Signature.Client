@@ -4,8 +4,10 @@
     <id>Idfy.Signature.Models</id>
     <version>$version$</version>
 	<authors>Idfy Norge AS</authors>
-    <description>Idfy signature models</description>
-
+	<Title>Idfy signature models</title>
+	<iconUrl>https://signerefiles.blob.core.windows.net/img/nuget-icon-128x128.png</iconUrl>
+    <description>Use these models with our signature API</description>
+	
   </metadata>
   <files>
     <file src="bin\Release\Idfy.Signature.Models.dll" target="lib\net45" />
