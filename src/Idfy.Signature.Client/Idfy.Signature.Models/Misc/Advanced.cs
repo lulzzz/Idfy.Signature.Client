@@ -18,6 +18,10 @@ namespace Idfy.Signature.Models.Misc
         /// Beware: if you set this value to 3, you MUST upload 3 attachments before anyone can sign this document.</span>
         /// </summary>
         public int Attachments { get; set; }
+        /// <summary>
+        /// Set how many signatures this document needs before it can be sealed and sat to complete
+        /// </summary>
+        public int RequiredSignatures { get; set; }
 
         public string CreatedByApplication { get; set; }
 

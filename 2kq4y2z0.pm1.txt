@@ -1,0 +1,21 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/Sign/CreateDocumentBaseData.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/CreateDocumentBaseData.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/Sign/CreateDocumentRequest.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/CreateDocumentRequest.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/Sign/CreateDocumentResponse.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/CreateDocumentResponse.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/Sign/DisableNotificationsRequest.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/DisableNotificationsRequest.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/DocumentInfo/DocumentInfoRequest.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/DocumentInfoRequest.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/DocumentInfo/DocumentInfoResponse.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/DocumentInfoResponse.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/Sign/Notification.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/Notification.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/Sign/SignerResponse.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/SignerResponse.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/Sign/UpdateDocumentRequest.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/Documents/UpdateDocumentRequest.cs
+#	renamed:    src/Idfy.Signature.Client/Idfy.Signature.Models/DocumentFile/DocumentFileResponse.cs -> src/Idfy.Signature.Client/Idfy.Signature.Models/File/DocumentFileResponse.cs
+#	modified:   src/Idfy.Signature.Client/Idfy.Signature.Models/Misc/Advanced.cs
+#	deleted:    src/Idfy.Signature.Client/Idfy.Signature.Models/Serial/SerialSignRequest.cs
+#
+
