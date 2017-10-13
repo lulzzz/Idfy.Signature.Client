@@ -3,13 +3,12 @@
   <metadata>
     <id>Idfy.Signature.Client</id>
     <version>$version$</version>
-    <!--<version>1.0.0</version>-->
-    <authors>Idfy Norge AS</authors>
+	<authors>Idfy Norge AS</authors>
     <owners>Idfy Norge AS</owners>
     <title>Signature client for Idfy Signature API</title>
-      <iconUrl>https://signerefiles.blob.core.windows.net/img/nuget-icon-128x128.png</iconUrl>
+   <iconUrl>https://signerefiles.blob.core.windows.net/img/nuget-icon-128x128.png</iconUrl>
     <description>
-      Signature client for Idfy Signature API
+      Signature client for Idfy Signature API. Our API has a wide range of possibilites and signature methods.
     </description>
     <projectUrl>https://github.com/idfy-io/Idfy.Signature.Client</projectUrl>
     <tags>signature idfy bankid sign nemid</tags>
