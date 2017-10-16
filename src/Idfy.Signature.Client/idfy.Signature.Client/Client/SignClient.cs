@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Models;
 using Idfy.Signature.Models.Attachment;
-using Idfy.Signature.Models.DocumentFile;
-using Idfy.Signature.Models.DocumentInfo;
+using Idfy.Signature.Models.Documents;
+using Idfy.Signature.Models.File;
 using Idfy.Signature.Models.Misc;
-using Idfy.Signature.Models.Sign;
+using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Client.Client
 {
@@ -84,24 +84,24 @@ namespace Idfy.Signature.Client.Client
             return result.Deserialize<DocumentStatus>();
         }
         
-        public async Task<DocumentInfoResponse> GetDocumentSummary(Guid documentId)
+        public async Task<DocumentSummary> GetDocumentSummary(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.GetSummary(AccountId, documentId);
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
 
-            return result.Deserialize<DocumentInfoResponse>();
+            return result.Deserialize<DocumentSummary>();
         }
 
-        public async Task<DocumentInfoResponse> ListDocuments(DocumentInfoRequest request)
+        public async Task<DocumentSummary> ListDocuments(DocumentInfoRequest request)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.GetList(AccountId);
 
             var result = await HttpWrapper.RunPostAsync(url, request, Token);
 
-            return result.Deserialize<DocumentInfoResponse>();
+            return result.Deserialize<DocumentSummary>();
         }
 
         public async Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat? fileFormat)

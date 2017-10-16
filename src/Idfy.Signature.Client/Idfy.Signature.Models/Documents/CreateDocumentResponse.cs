@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Idfy.Signature.Models.Signers;
 
-namespace Idfy.Signature.Models.Sign
+namespace Idfy.Signature.Models.Documents
 {
     public class CreateDocumentResponse: CreateDocumentBaseData
     {

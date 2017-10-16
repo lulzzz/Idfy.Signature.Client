@@ -1,7 +1,7 @@
 ﻿using System;
 using Idfy.Signature.Models.Misc;
 
-namespace Idfy.Signature.Models.DocumentInfo
+namespace Idfy.Signature.Models.Documents
 {
     public class DocumentInfoRequest
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Idfy.Signature.Models.Sign
+namespace Idfy.Signature.Models.Documents
 {
     public class DisableNotificationsRequest    
     {

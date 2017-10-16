@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Idfy.Signature.Models.Misc
+namespace Idfy.Signature.Models.Signers
 {
     public class SignersUrl
     {

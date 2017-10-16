@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Idfy.Signature.Models.Attachment
+namespace Idfy.Signature.Models.JWT
 {
     /// <summary>
     /// Jwt validation request

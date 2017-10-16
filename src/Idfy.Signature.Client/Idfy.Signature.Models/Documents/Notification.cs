@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Idfy.Signature.Models.Misc;
 
-namespace Idfy.Signature.Models.Sign
+namespace Idfy.Signature.Models.Documents
 {
     public class Notification
     {

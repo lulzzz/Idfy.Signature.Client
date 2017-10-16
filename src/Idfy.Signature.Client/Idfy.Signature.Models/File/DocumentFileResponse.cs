@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Idfy.Signature.Models.DocumentFile
+namespace Idfy.Signature.Models.File
 {
     public class DocumentFileResponse
     {

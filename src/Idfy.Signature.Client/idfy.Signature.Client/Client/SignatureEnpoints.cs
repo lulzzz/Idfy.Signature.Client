@@ -1,5 +1,5 @@
 ﻿using System;
-using Idfy.Signature.Models.DocumentFile;
+using Idfy.Signature.Models.File;
 
 namespace Idfy.Signature.Client.Client
 {

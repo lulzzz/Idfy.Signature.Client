@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Models.Attachment;
-using Idfy.Signature.Models.DocumentFile;
-using Idfy.Signature.Models.DocumentInfo;
+using Idfy.Signature.Models.Documents;
+using Idfy.Signature.Models.File;
 using Idfy.Signature.Models.Misc;
-using Idfy.Signature.Models.Sign;
+using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Client.Client
 {
@@ -47,13 +47,13 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<DocumentInfoResponse> GetDocumentSummary(Guid documentId);
+        Task<DocumentSummary> GetDocumentSummary(Guid documentId);
         /// <summary>
         /// Query your documents
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<DocumentInfoResponse> ListDocuments(DocumentInfoRequest request);
+        Task<DocumentSummary> ListDocuments(DocumentInfoRequest request);
 
         /// <summary>
         /// Get a document file
