@@ -53,7 +53,7 @@ namespace Idfy.Signature.Models.Misc
         /// <summary>
         /// Define when the document should expire (utc date in ticks), document is not signable after this (Default/maximum 45 days)
         /// </summary>
-        public long Expires { get; set; }
+        public long Deadline { get; set; }
         /// <summary>
         /// How many hours should we keep the document after it is signed? Default/ maximum  7 days (168 hours)
         /// </summary>

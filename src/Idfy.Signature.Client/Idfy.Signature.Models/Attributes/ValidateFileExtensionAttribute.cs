@@ -17,19 +17,25 @@ namespace Idfy.Signature.Models.Attributes
             try
             {
                 var fileName = value as string;
-                var extension = fileName.Split('.').Last()?.ToLowerInvariant();
-
-                switch (extension)
+                var extension = System.IO.Path.GetExtension(fileName);
+                if (extension != null)
                 {
-                    case "pdf":
-                    case "doc":
-                    case "xml":
-                    case "txt":
-                        return ValidationResult.Success;
-                    default:
-                        return new ValidationResult(ErrorMessage);
+                    switch (extension.ToLowerInvariant())
+                    {
+                        case ".pdf":
+                        case ".doc":
+                        case ".docx":
+                        case ".rtf":
+                        case ".xml":
+                        case ".txt":
+                        case ".odt":
+                        case ".ott":
+                            return ValidationResult.Success;
+                        default:
+                            return new ValidationResult(ErrorMessage);
+                    }
                 }
-
+                return new ValidationResult(ErrorMessage);
             }
             catch (Exception e)
             {
