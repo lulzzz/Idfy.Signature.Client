@@ -59,8 +59,8 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public long Expires { get; set; }
         /// <summary>
-        /// How many days should we keep the document after it is signed? Default/ maximum 14 days
+        /// How many hours should we keep the document after it is signed? Default/ maximum  7 days (168 hours)
         /// </summary>
-        public int DeleteAfterDays { get; set; }
+        public int DeleteAfterHours { get; set; }
     }
 }
