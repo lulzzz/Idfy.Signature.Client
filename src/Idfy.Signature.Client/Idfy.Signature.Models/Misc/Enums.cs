@@ -29,11 +29,8 @@
 
     public enum SignaturePackageFormat
     {
-        native,
-        idfy_packaged_xml,
         xades,
         pades,
-
         no_bankid_pades,
     }
 

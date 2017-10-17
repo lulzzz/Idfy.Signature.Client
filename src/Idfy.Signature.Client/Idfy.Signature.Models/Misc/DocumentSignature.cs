@@ -7,7 +7,7 @@ namespace Idfy.Signature.Models.Misc
         /// <summary>
         /// The signer Id
         /// </summary>
-        public string SignerId { get; set; }
+        public Guid SignerId { get; set; }
         /// <summary>
         /// Your reference for the signer
         /// </summary>
@@ -41,7 +41,7 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public DateTime? SignedTime { get; set; }
         /// <summary>
-        /// The signers date of birth
+        /// The signers date of birth (ddMMyy)
         /// </summary>
         public string DateOfBirth { get; set; }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Idfy.Signature.Models.Misc
         /// <summary>
         /// The signers social security number, this will get a value if you specified that you wanted social security number in your request (if you are allowed to)
         /// </summary>
-        public string SocaialSecurityNumber { get; set; }
+        public string SocialSecurityNumber { get; set; }
         /// <summary>
         /// The Ip address of the signer
         /// </summary>
