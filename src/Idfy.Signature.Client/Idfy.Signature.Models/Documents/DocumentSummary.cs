@@ -14,7 +14,7 @@ namespace Idfy.Signature.Models.Documents
 
         public DocumentStatus Status { get; set; }
         public string ExternalId { get; set; }
-        public IList<DocumentSignature> DocumentSignatures { get; set; }
+        public IList<ExtendedDocumentSignature> DocumentSignatures { get; set; }
         public int RequiredSignatures { get; set; }
         public int CurrentSignatures { get; set; }
         public string Tags { get; set; }
