@@ -30,13 +30,8 @@ namespace Idfy.Signature.Models.Misc
         public bool ConvertToPDF { get; set; }
 
         /// <summary>
-        /// The format(s) that you will be able to fetch the signed document afterwards. Read more about SignaturePackage format in the documentation.
+        /// The format(s) that you will be able to fetch the signed document afterwards. Read more about SignaturePackage format in the documentation. (The native package format is included automatically (i.e. bankid sdo)
         /// </summary>
-        [Required]
         public List<SignaturePackageFormat> SignaturePackageFormat { get; set; }
-
-        
-
-
     }
 }
