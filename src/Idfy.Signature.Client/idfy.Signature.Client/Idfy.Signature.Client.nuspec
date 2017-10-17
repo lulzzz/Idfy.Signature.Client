@@ -14,9 +14,9 @@
     <tags>signature idfy bankid sign nemid</tags>
   </metadata>
   <files>
-    <file src="bin\Release\Idfy.Signature.Client.dll"  />
-    <file src="bin\Release\Idfy.Signature.Models.dll"  />
-    <file src="bin\Release\Idfy.Signature.Client.xml"  />
-    <file src="bin\Release\Idfy.Signature.Models.xml"  />    
+    <file src="bin\Release\Idfy.Signature.Client.dll" target="lib" />
+    <file src="bin\Release\Idfy.Signature.Models.dll" target="lib" />
+    <file src="bin\Release\Idfy.Signature.Client.xml" target="lib" />
+    <file src="bin\Release\Idfy.Signature.Models.xml" target="lib"/>    
   </files>
 </package>
