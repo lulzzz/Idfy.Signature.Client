@@ -49,6 +49,7 @@
 
     public enum RedirectMode
     {
+        dont_redirect,
         redirect,
         iframe_with_webmessaging,
         iframe_with_redirect,
