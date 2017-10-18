@@ -46,6 +46,10 @@
     <Compile Include="Misc\DocumentSignature.cs" />
     <Compile Include="Misc\ExtraInfo.cs" />
     <Compile Include="Misc\Styling.cs" />
+    <Compile Include="Signers\Authentication.cs" />
+    <Compile Include="Misc\Mobile.cs" />
+    <Compile Include="Signers\OrganizationInfo.cs" />
+    <Compile Include="Signers\SignatureType.cs" />
     <Compile Include="Signers\SignerInfo.cs" />
     <Compile Include="Documents\CreateDocumentBaseData.cs" />
     <Compile Include="Documents\CreateDocumentRequest.cs" />

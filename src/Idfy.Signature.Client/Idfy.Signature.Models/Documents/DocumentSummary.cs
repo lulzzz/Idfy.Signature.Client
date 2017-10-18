@@ -11,7 +11,6 @@ namespace Idfy.Signature.Models.Documents
         public DateTime? LastUpdated { get; set; }
         public DateTime? Deadline { get; set; }
         public DateTime? SignedDate { get; set; }
-
         public DocumentStatus Status { get; set; }
         public string ExternalId { get; set; }
         public IList<ExtendedDocumentSignature> DocumentSignatures { get; set; }

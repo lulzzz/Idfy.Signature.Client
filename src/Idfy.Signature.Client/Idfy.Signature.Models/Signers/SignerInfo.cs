@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Models.Signers
 {

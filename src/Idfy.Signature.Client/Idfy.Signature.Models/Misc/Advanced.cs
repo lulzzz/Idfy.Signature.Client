@@ -35,10 +35,6 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public ExtraInfo ExtraInfo { get; set; }
         /// <summary>
-        /// Customize styling to make the the signature application look perfect in combination with your application
-        /// </summary>
-        public Styling Styling { get; set; }
-        /// <summary>
         /// Security settings
         /// </summary>
         public Security Security { get; set; }

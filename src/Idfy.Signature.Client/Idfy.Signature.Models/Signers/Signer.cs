@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Models.Signers
@@ -22,10 +21,7 @@ namespace Idfy.Signature.Models.Signers
         /// Define the signers name, mobile and email if you are using notifications
         /// </summary>
         public SignerInfo SignerInfo { get; set; }
-        /// <summary>
-        /// You can create dialogs that will be showed to the signer in the signature process
-        /// </summary>
-        public Dialogs Dialogs { get; set; }
+
         /// <summary>
         /// Do you want the signer to authenticate before they can see the document?
         /// </summary>
@@ -35,13 +31,13 @@ namespace Idfy.Signature.Models.Signers
         /// </summary>
         public ExtraInfo ExtraInfo { get; set; }
         /// <summary>
+        /// Here you can set language, styling and create dialogs the signer have to read before/after the signing
+        /// </summary>
+        public UI Ui { get; set; }
+        /// <summary>
         /// Enable email/sms notifications for this specific signer
         /// </summary>
         public bool NotificationsEnabled { get; set; }
-        /// <summary>
-        /// The signers preferred language, this setting is used when signing the document and in email/sms notifications.<span style="color: blue;">If you set it to browser language the notifications will be delievered in english unless you specify custom notification messages with browser as language in your request.</span> 
-        /// </summary>
-        public Language Language { get; set; }
         /// <summary>
         /// Coming soon
         /// </summary>
@@ -58,52 +54,21 @@ namespace Idfy.Signature.Models.Signers
         /// How long before the signers url should expire? Utc date in ticks. This can be set if you only want a limited time to live for each sign url (If you generate a new url at a later time this will also have this limited lifetime). Defaults to the document lifetime.
         /// </summary>
         public int SignUrlExpires { get; set; }
-
     }
 
-    public class SignatureType
+    public class UI
     {
         /// <summary>
-        /// Define which signature methods the signer are allowed to sign the document with, if empty all available methods for the account will be displayed to the user
+        /// You can create dialogs that will be showed to the signer in the signature process
         /// </summary>
-        public List<SignatureMethod> SignatureMethods { get; set; }
-
-        [Required]
-        public Mechanisms Mechanism { get; set; }
-
-        public bool OnEacceptUseHandWrittenSignature { get; set; }
-    }
-
-    public class Authentication
-    {
+        public Dialogs Dialogs { get; set; }
         /// <summary>
-        /// If this is set to true, you have to include the social security number or SignatureMethod unique id for the signer
+        /// The signers preferred language, this setting is used when signing the document and in email/sms notifications.<span style="color: blue;">If you set it to browser language the notifications will be delievered in english unless you specify custom notification messages with browser as language in your request.</span> 
         /// </summary>
-        public bool AuthBeforeSign { get; set; }
+        public Language Language { get; set; }
         /// <summary>
-        /// The signers social security number
+        /// Customize styling to make the the signature application look perfect in combination with your application
         /// </summary>
-        public string SocialSecurityNumber { get; set; }
-
-        /// <summary>
-        /// Define this if you have the signers unique signaturemethod id (i.e. the norwegian bankid pid). Only the person supposed to sign the document will then be allowed to sign it.
-        /// </summary>
-        public string SignatureMethodUniqueId { get; set; }
-
+        public Styling Styling { get; set; }
     }
-
-    public class Mobile
-    {
-        [Required]
-        public string CountryCode { get; set; }
-        [Required]
-        public string Number { get; set; }
-    }
-
-    public class OrganizationInfo
-    {
-        public string OrgNo { get; set; }
-        public string CompanyName { get; set; }
-    }
-
 }
