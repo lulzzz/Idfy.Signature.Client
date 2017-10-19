@@ -42,6 +42,14 @@ namespace Idfy.Signature.Models.Misc
         /// Customize the time to live for the document and urls
         /// </summary>
         public TimeToLive TimeToLive { get; set; }
+        /// <summary>
+        /// Include your own pades template
+        /// </summary>
+        public string PadesTemplateId { get; set; }
+        /// <summary>
+        /// Set departement Id to mark invoice with departement
+        /// </summary>
+        public string DepartementId { get; set; }
     }
 
     public class TimeToLive

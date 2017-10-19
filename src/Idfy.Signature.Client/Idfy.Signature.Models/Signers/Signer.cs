@@ -15,7 +15,7 @@ namespace Idfy.Signature.Models.Signers
         /// </summary>
         [Required]
         public RedirectSettings RedirectSettings { get; set; }
-       
+        [Required]
         public SignatureType SignatureType { get; set; }
         /// <summary>
         /// Define the signers name, mobile and email if you are using notifications
