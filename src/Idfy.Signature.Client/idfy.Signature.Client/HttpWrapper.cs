@@ -3,11 +3,14 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Idfy.Signature.Client.Client;
 
 namespace Idfy.Signature.Client
 {
     public class HttpWrapper
     {
+
+
         public string RunPost<T>(string url, T data, string token)
         {
             using (var client = new HttpClient())
@@ -43,6 +46,27 @@ namespace Idfy.Signature.Client
                 else
                 {
                     throw new ApiResponseException((int)response.StatusCode, response.ReasonPhrase, await response.Content.ReadAsStringAsync());
+                }
+            }
+        }
+
+        public async Task<FileResponse> RunDownloadAsync(string url, string token)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = client.GetAsync(url).Result;
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var fileName = response.Content.Headers.ContentDisposition.FileName;
+                    var data= await response.Content.ReadAsByteArrayAsync();
+
+                    return new FileResponse() {Bytes = data, Filename = fileName};
+                }
+                else
+                {
+                    throw new ApiResponseException((int)response.StatusCode, response.ReasonPhrase, Extensions.RunSync(() => response.Content.ReadAsStringAsync()));
                 }
             }
         }

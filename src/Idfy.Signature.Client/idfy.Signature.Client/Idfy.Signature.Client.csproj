@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiResponseException.cs" />
+    <Compile Include="Client\File.cs" />
     <Compile Include="Client\SignClient.cs" />
     <Compile Include="Client\BaseSignClient.cs" />
     <Compile Include="Client\ISignClient.cs" />
