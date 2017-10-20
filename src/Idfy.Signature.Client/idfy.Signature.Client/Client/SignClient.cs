@@ -94,11 +94,54 @@ namespace Idfy.Signature.Client.Client
             return result.Deserialize<DocumentSummary>();
         }
 
-        public async Task<DocumentSummary> ListDocuments(DocumentInfoRequest request)
+        public async Task<DocumentSummary> ListDocuments(ListDocumentsRequest request)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.GetList(AccountId);
 
+            if (!string.IsNullOrEmpty(request.ExternalId))
+            {
+                url += $"&externalId={request.ExternalId}";
+            }
+            if (!string.IsNullOrEmpty(request.NameOfSigner))
+            {
+                url += $"&nameOfSigner={request.NameOfSigner}";
+            }
+            if (!string.IsNullOrEmpty(request.Tags))
+            {
+                url += $"&tags={request.Tags}";
+            }
+            if (request.FromDate != null)
+            {
+                url += $"&fromDate={request.FromDate}";
+            }
+            if (request.ToDate != null)
+            {
+                url += $"&toDate={request.ToDate}";
+            }
+            if (request.SignedDate != null)
+            {
+                url += $"&signedDate={request.SignedDate}";
+            }
+            if (request.SignerId != null)
+            {
+                url += $"&signerId={request.SignerId}";
+            }
+            if (!string.IsNullOrEmpty(request.ExternalSignerId))
+            {
+                url += $"&externalSignerId={request.ExternalSignerId}";
+            }
+            if (request.LastUpdated != null)
+            {
+                url += $"&lastUpdated={request.LastUpdated}";
+            }
+            if (request.Status != null)
+            {
+                url += $"&status={request.Status}";
+            }
+
+
+            url = url.ReplaceFirst("&", "?");
             var result = await HttpWrapper.RunPostAsync(url, request, Token);
 
             return result.Deserialize<DocumentSummary>();

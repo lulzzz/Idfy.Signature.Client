@@ -53,7 +53,7 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<DocumentSummary> ListDocuments(DocumentInfoRequest request);
+        Task<DocumentSummary> ListDocuments(ListDocumentsRequest request);
 
         /// <summary>
         /// Get a document file
