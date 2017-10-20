@@ -104,14 +104,20 @@ namespace Idfy.Signature.Client.Client
             return result.Deserialize<DocumentSummary>();
         }
 
-        public async Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat? fileFormat)
+        public async Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat fileFormat)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEnpoints.GetDocumentFile(AccountId, documentId, fileFormat);
 
-            var result = await HttpWrapper.RunGetQueryAsync(url, Token);
+            var result = await HttpWrapper.RunDownloadAsync(url, Token);
 
-            return result.Deserialize<DocumentFileResponse>();
+            return new DocumentFileResponse()
+            {
+                Document = result.Bytes,
+                DocumentId = documentId,
+                FileFormat = fileFormat,
+                FileName=result.Filename,
+            };
         }
 
 
