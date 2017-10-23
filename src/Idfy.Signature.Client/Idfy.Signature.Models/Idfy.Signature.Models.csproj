@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ValidateMobileSimpleAttribute.cs" />
     <Compile Include="JWT\JwtValidationRequest.cs" />
     <Compile Include="JWT\JwtValidationResponse.cs" />
     <Compile Include="Misc\DocumentSignature.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Signers\Signer.cs" />
     <Compile Include="Signers\RedirectSettings.cs" />
     <Compile Include="Documents\UpdateDocumentRequest.cs" />
+    <Compile Include="Signers\UpdateSignerRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
