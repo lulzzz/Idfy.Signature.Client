@@ -208,6 +208,14 @@ namespace Idfy.Signature.Client.Client
             var url = BaseUrl + SignatureEnpoints.RemoveSigner(AccountId, documentId, signerId);
             await HttpWrapper.RunDeleteAsync(url, Token);
         }
+
+        public async Task UpdateSigner(Guid documentId, Guid signerId, UpdateSignerRequest request)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEnpoints.UpdateSigner(AccountId, documentId, signerId);
+            await HttpWrapper.RunPatchAsync(url, request, Token);
+        }
+
         public async Task<IEnumerable<SignerResponse>> ListSigners(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);

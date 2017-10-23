@@ -98,6 +98,14 @@ namespace Idfy.Signature.Client.Client
         Task RemoveSigner(Guid documentId, Guid signerId);
 
         /// <summary>
+        /// Update a signer on a document
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <param name="signerId"></param>
+        /// <returns></returns>
+        Task UpdateSigner(Guid documentId, Guid signerId, UpdateSignerRequest request);
+
+        /// <summary>
         /// Lists all the signers for a an existing document
         /// </summary>
         /// <param name="documentId"></param>
