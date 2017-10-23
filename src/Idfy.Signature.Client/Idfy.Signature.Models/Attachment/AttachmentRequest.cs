@@ -18,12 +18,12 @@ namespace Idfy.Signature.Models.Attachment
         [Required]
         public string FileName { get; set; }
         /// <summary>
-        /// Give the attachement a title that will be presented to the user
+        /// Give the attachment a title that will be presented to the user
         /// </summary>
         [Required]
         public string Title { get; set; }
         /// <summary>
-        /// base 64 encoded attachement (utf-8)
+        /// base 64 encoded attachment (utf-8)
         /// </summary>
         [Required]
         public string Data { get; set; }
