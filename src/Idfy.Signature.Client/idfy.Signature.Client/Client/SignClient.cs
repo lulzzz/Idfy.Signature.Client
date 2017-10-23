@@ -163,6 +163,22 @@ namespace Idfy.Signature.Client.Client
             };
         }
 
+        public async  Task<DocumentFileResponse> GetSignerFile(Guid documentId, Guid signerId, SignerFileFormat fileFormat)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEnpoints.GetSignerFile(AccountId, documentId,signerId, fileFormat);
+
+            var result = await HttpWrapper.RunDownloadAsync(url, Token);
+
+            return new DocumentFileResponse()
+            {
+                Document = result.Bytes,
+                DocumentId = documentId,
+                FileFormat = fileFormat==SignerFileFormat.native ? FileFormat.native : FileFormat.standard_packaging,
+                FileName = result.Filename,
+            };
+        }
+
 
         public async Task<Guid> AddAttachment(AttachmentRequest request)
         {

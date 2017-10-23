@@ -63,6 +63,16 @@ namespace Idfy.Signature.Client.Client
         /// <returns></returns>
         Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat fileFormat);
 
+
+        /// <summary>
+        /// Get a document file
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <param name="signerId"></param>
+        /// <param name="fileFormat"></param>
+        /// <returns></returns>
+        Task<DocumentFileResponse> GetSignerFile(Guid documentId, Guid signerId, SignerFileFormat fileFormat);
+
         /// <summary>
         /// Add an attachement to use in the sign process. Returns attachment ID
         /// </summary>
