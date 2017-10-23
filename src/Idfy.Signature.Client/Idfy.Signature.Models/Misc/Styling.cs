@@ -29,7 +29,8 @@
     {
         Document,
         Classic,
-        Cubes
+        Cubes,
+        Bounce
     }
 
 }
