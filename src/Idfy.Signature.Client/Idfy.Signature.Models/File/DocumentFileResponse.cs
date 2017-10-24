@@ -15,6 +15,9 @@ namespace Idfy.Signature.Models.File
         public Guid DocumentId { get; set; }
         public byte[] Document { get; set; }
         public SignerFileFormat FileFormat { get; set; }
+
+        public string FileName { get; set; }
+
     }
 
     public enum FileFormat

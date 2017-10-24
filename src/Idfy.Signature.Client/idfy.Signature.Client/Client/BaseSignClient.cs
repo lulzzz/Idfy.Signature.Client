@@ -35,7 +35,7 @@ namespace Idfy.Signature.Client.Client
             Scope = scope;
             HttpWrapper = new HttpWrapper();
             TokenEnpoint = isProd ? OauthEnpoints.TokenEndpointProd : OauthEnpoints.TokenEndpointTest;
-            BaseUrl = isProd ? SignatureEnpoints.BaseUrlProd : SignatureEnpoints.BaseUrlTest;
+            BaseUrl = isProd ? SignatureEndpoints.BaseUrlProd : SignatureEndpoints.BaseUrlTest;
 
             if (!BaseUrl.EndsWith("/"))
                 BaseUrl += "/";

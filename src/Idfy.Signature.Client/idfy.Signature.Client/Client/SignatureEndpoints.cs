@@ -3,7 +3,7 @@ using Idfy.Signature.Models.File;
 
 namespace Idfy.Signature.Client.Client
 {
-    internal static class SignatureEnpoints
+    internal static class SignatureEndpoints
     {
         internal const string BaseUrlProd = "https://sign-api.idfy.io/";
         internal const string BaseUrlTest = "https://sign-api-test.idfy.io/";
@@ -24,10 +24,12 @@ namespace Idfy.Signature.Client.Client
 
         internal static string GetDocumentFile(Guid accountId, Guid documentId, FileFormat? fileFormat) => $"api/files/{accountId}/{documentId}?fileFormat={fileFormat}";
 
+        internal static string GetSignerFile(Guid accountId, Guid documentId, Guid signerId, SignerFileFormat? fileFormat) => $"api/files/signer/{accountId}/{documentId}?fileFormat={fileFormat}&signerId={signerId}";
+
 
         #endregion
 
-        #region Attachements
+        #region Attachments
 
         internal static string AddAttachment(Guid accountId) => $"api/attachments/{accountId}";
         internal static string GetAttachment(Guid accountId, Guid id) => $"api/attachments/{accountId}/{id}";

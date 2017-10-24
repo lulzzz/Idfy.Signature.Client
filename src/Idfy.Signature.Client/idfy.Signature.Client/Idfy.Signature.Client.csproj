@@ -47,7 +47,7 @@
     <Compile Include="Client\SignClient.cs" />
     <Compile Include="Client\BaseSignClient.cs" />
     <Compile Include="Client\ISignClient.cs" />
-    <Compile Include="Client\SignatureEnpoints.cs" />
+    <Compile Include="Client\SignatureEndpoints.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HttpWrapper.cs" />
     <Compile Include="JsonFormatter.cs" />
