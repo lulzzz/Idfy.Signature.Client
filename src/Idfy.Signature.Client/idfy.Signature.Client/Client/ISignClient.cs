@@ -9,6 +9,9 @@ using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Client.Client
 {
+    /// <summary>
+    /// Idfy Signature client, this can be used with our signature api
+    /// </summary>
     public interface ISignClient
     {
         /// <summary>
@@ -40,7 +43,7 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<DocumentStatus> GetDocumentStatus(Guid documentId);
+        Task<Status> GetDocumentStatus(Guid documentId);
 
         /// <summary>
         /// Get information about a specific document
@@ -103,7 +106,7 @@ namespace Idfy.Signature.Client.Client
         /// <param name="documentId"></param>
         /// <param name="signerId"></param>
         /// <returns></returns>
-        Task UpdateSigner(Guid documentId, Guid signerId, UpdateSignerRequest request);
+        Task<UpdateSignerRequest> UpdateSigner(Guid documentId, Guid signerId, UpdateSignerRequest request);
 
         /// <summary>
         /// Lists all the signers for a an existing document
