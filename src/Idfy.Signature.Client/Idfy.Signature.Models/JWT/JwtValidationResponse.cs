@@ -5,11 +5,16 @@ namespace Idfy.Signature.Models.JWT
 {
     public class JwtValidationResponse
     {
-        public string JwtKeyVersion { get; set; }
+        
+        
         /// <summary>
-        /// true if jwt is valid
+        /// True if jwt is valid
         /// </summary>
         public bool JwtValid { get; set; }
+        /// <summary>
+        /// True if expired
+        /// </summary>
+        public bool Expired { get; set; }
         /// <summary>
         /// Payload (valid data if jwt is valid)
         /// </summary>
@@ -66,9 +71,17 @@ namespace Idfy.Signature.Models.JWT
         /// </summary>
         public string FirstName { get; set; }
         /// <summary>
+        /// The signers middle name
+        /// </summary>
+        public string MiddleName { get; set; }
+        /// <summary>
         /// The signers last name
         /// </summary>
         public string LastName { get; set; }
+        /// <summary>
+        /// The signers full name
+        /// </summary>
+        public string FullName { get; set; }
         /// <summary>
         /// The signers date of birth
         /// </summary>
