@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Models.Signers
@@ -17,5 +18,10 @@ namespace Idfy.Signature.Models.Signers
         /// This property will get it's values when the signing is done, it contains name, date of birth of the signer and mroe.
         /// </summary>
         public DocumentSignature DocumentSignature { get; set; }
+
+        /// <summary>
+        /// A dicitonary with extra information from each identityprovider, and extra services. See developer documentation for more information
+        /// </summary>
+        public Dictionary<string, string> MetaData { get; set; }
     }
 }
