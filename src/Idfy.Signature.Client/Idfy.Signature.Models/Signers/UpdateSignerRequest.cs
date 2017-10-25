@@ -25,7 +25,7 @@ namespace Idfy.Signature.Models.Signers
         /// <summary>
         /// Enable email/sms notifications for this specific signer
         /// </summary>
-        public bool NotificationsEnabled { get; set; }
+        public bool? NotificationsEnabled { get; set; }
         /// <summary>
         /// Coming soon
         /// </summary>
@@ -33,14 +33,14 @@ namespace Idfy.Signature.Models.Signers
         /// <summary>
         /// You can define a specific sign order /queue for the signers if you want to.
         /// </summary>
-        public int Order { get; set; }
+        public int? Order { get; set; }
         /// <summary>
         /// If some of the signers are marked as required, the other signers are not allowed to sign before the required ones have signed the document
         /// </summary>
-        public bool Required { get; set; }
+        public bool? Required { get; set; }
         /// <summary>
         /// How long before the signers url should expire? Utc date in ticks. This can be set if you only want a limited time to live for each sign url (If you generate a new url at a later time this will also have this limited lifetime). Defaults to the document lifetime.
         /// </summary>
-        public int SignUrlExpires { get; set; }
+        public int? SignUrlExpires { get; set; }
     }
 }
