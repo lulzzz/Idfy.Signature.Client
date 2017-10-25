@@ -9,6 +9,9 @@ using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Client.Client
 {
+    /// <summary>
+    /// Idfy Signature client, this can be used with our signature api
+    /// </summary>
     public interface ISignClient
     {
         /// <summary>
@@ -40,7 +43,7 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<DocumentStatus> GetDocumentStatus(Guid documentId);
+        Task<Status> GetDocumentStatus(Guid documentId);
 
         /// <summary>
         /// Get information about a specific document
@@ -74,14 +77,14 @@ namespace Idfy.Signature.Client.Client
         Task<DocumentFileResponse> GetSignerFile(Guid documentId, Guid signerId, SignerFileFormat fileFormat);
 
         /// <summary>
-        /// Add an attachement to use in the sign process. Returns attachment ID
+        /// Add an attachment to use in the sign process. Returns attachment ID
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<Guid> AddAttachment(AttachmentRequest request);
 
         /// <summary>
-        /// Get an attachement
+        /// Get an attachment
         /// </summary>
         /// <param name="attachmentId"></param>
         /// <returns></returns>
@@ -113,7 +116,7 @@ namespace Idfy.Signature.Client.Client
         /// <param name="documentId"></param>
         /// <param name="signerId"></param>
         /// <returns></returns>
-        Task UpdateSigner(Guid documentId, Guid signerId, UpdateSignerRequest request);
+        Task<UpdateSignerRequest> UpdateSigner(Guid documentId, Guid signerId, UpdateSignerRequest request);
 
         /// <summary>
         /// Lists all the signers for a an existing document

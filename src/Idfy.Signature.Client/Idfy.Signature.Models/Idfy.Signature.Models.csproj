@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ValidateMobileSimpleAttribute.cs" />
+    <Compile Include="Documents\Status.cs" />
     <Compile Include="JWT\JwtValidationRequest.cs" />
     <Compile Include="JWT\JwtValidationResponse.cs" />
     <Compile Include="Misc\DocumentSignature.cs" />
