@@ -69,6 +69,10 @@ namespace Idfy.Signature.Models.JWT
     public class SignSuccess
     {
         /// <summary>
+        /// The unique id retrieved from the signature method provider
+        /// </summary>
+        public string SignatureMethodUniqueId { get; set; }
+        /// <summary>
         /// The signers first name
         /// </summary>
         public string FirstName { get; set; }
