@@ -5,6 +5,7 @@ using Idfy.Signature.Models;
 using Idfy.Signature.Models.Attachment;
 using Idfy.Signature.Models.Documents;
 using Idfy.Signature.Models.File;
+using Idfy.Signature.Models.JWT;
 using Idfy.Signature.Models.Misc;
 using Idfy.Signature.Models.Signers;
 
@@ -17,6 +18,8 @@ namespace Idfy.Signature.Client.Client
             base(accountId, oauthClientId, oauthSecret, scope, isProd)
         {
         }
+
+       
 
         public string OverrideBaseUrl
         {
@@ -240,6 +243,15 @@ namespace Idfy.Signature.Client.Client
             var response = await HttpWrapper.RunGetQueryAsync(url, Token);
             return response.Deserialize<IEnumerable<SignerResponse>>();
         }
+
+        public async Task<JwtValidationResponse> ValidateJwt(JwtValidationRequest jwt)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEndpoints.ValidateJwt(AccountId);
+            var response = await HttpWrapper.RunPostAsync(url, jwt, Token);
+            return response.Deserialize<JwtValidationResponse>();
+        }
+
 
     }
 }

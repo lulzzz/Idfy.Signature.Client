@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Idfy.Signature.Models.Attachment;
 using Idfy.Signature.Models.Documents;
 using Idfy.Signature.Models.File;
-using Idfy.Signature.Models.Misc;
+using Idfy.Signature.Models.JWT;
 using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Client.Client
@@ -125,7 +125,12 @@ namespace Idfy.Signature.Client.Client
         /// <returns></returns>
         Task<IEnumerable<SignerResponse>> ListSigners(Guid documentId);
 
-
+        /// <summary>
+        /// Validate and parse jwt you receive on redirect
+        /// </summary>
+        /// <param name="jwt"></param>
+        /// <returns></returns>
+        Task<JwtValidationResponse> ValidateJwt(JwtValidationRequest jwt);
 
         string OverrideBaseUrl { set; }
         string OverrideOauthTokenUrl { set; }

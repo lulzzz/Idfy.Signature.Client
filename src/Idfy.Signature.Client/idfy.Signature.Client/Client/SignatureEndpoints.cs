@@ -42,5 +42,7 @@ namespace Idfy.Signature.Client.Client
         internal static string RemoveSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}/{signerId}";
         internal static string UpdateSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}/{signerId}";
         internal static string ListSigners(Guid accountId, Guid documentId) => $"api/signers/{accountId}/{documentId}";
+        public static string ValidateJwt(Guid accountId) => $"api/jwt/{accountId}";
+
     }
 }

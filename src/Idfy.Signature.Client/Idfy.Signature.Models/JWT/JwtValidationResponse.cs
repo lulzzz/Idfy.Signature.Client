@@ -5,8 +5,6 @@ namespace Idfy.Signature.Models.JWT
 {
     public class JwtValidationResponse
     {
-        
-        
         /// <summary>
         /// True if jwt is valid
         /// </summary>
