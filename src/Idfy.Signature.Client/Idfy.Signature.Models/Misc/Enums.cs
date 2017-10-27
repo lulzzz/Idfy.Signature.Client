@@ -67,4 +67,12 @@
         rights_and_prokura
     }
 
+    public enum NotificationSetting
+    {
+        off,
+        send_sms,
+        send_email,
+        send_both
+    }
+
 }

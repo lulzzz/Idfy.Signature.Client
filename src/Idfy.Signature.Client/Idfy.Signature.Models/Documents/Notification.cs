@@ -5,27 +5,54 @@ namespace Idfy.Signature.Models.Documents
 {
     public class Notification
     {
+        /// <summary>
+        /// Here you can setup email/sms notifications notifying the signer that they have a new document to sign. Info: you also has to enable notifications on the signers you want to notify.
+        /// </summary>
         public SignRequest SignRequest { get; set; }
+        /// <summary>
+        /// Here you can setup email/sms notifications as a receipt for a signed document. 
+        /// </summary>
         public Receipt Receipt { get; set; }
+        /// <summary>
+        /// Here you can setup email/sms notifications reminding the signers that they have unsigned documents. Info: you also has to enable notifications on the signers you want to notify.
+        /// </summary>
         public Reminder Reminder { get; set; }
     }
 
     public class SignRequest
     {
-        public bool Enabled { get; set; }
+        /// <summary>
+        /// Set which notfication service to use (is off by default)
+        /// </summary>
+        public NotificationSetting Setting { get; set; }
         /// <summary>
         /// Create your own email messages. <span style="color: red;">Insert [signlink] where you want the sign url to be presented</span>
         /// </summary>
+        /// <summary>
+        /// Define your own email texts (Our default texts can be used by leaving this blank)
+        /// </summary>
         public List<Email> Email { get; set; }
+        /// <summary>
+        /// Define your own sms texts (Our default texts can be used by leaving this blank)
+        /// </summary>
         public List<SMS> SMS { get; set; }
     }
     public class Reminder
     {
-        public bool Enabled { get; set; }
+        /// <summary>
+        /// Set which notfication service to use (is off by default)
+        /// </summary>
+        public NotificationSetting Setting { get; set; }
+        /// <summary>
+        /// Define your own email texts (Our default texts can be used by leaving this blank)
+        /// </summary>
         public List<Email> Email { get; set; }
+        /// <summary>
+        /// Define your own sms texts (Our default texts can be used by leaving this blank)
+        /// </summary>
         public List<SMS> SMS { get; set; }
         /// <summary>
-        /// Define a chron expression to control the interval of the reminders (Use utc time). We use quartz cron expressions, read more about it here: http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html
+        /// Define a chron expression to control the interval of the reminders (Use utc time). We use quartz cron expressions, read more about it here: http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html.
         /// </summary>
         public string ChronSchedule { get; set; }
         /// <summary>
@@ -36,8 +63,21 @@ namespace Idfy.Signature.Models.Documents
 
     public class Receipt
     {
-        public bool Enabled { get; set; }
+        /// <summary>
+        /// Set which notfication service to use (is off by default)
+        /// </summary>
+        public NotificationSetting Setting { get; set; }
+        /// <summary>
+        /// You can include the signed document as an attachment in the receipt if you wish (We don't recommend to do this with sensitive documents). Info: you also has to enable notifications on the signers you want to notify.
+        /// </summary>
+        public bool IncludeSignedFile { get; set; }
+        /// <summary>
+        /// Define your own email texts (Our default texts can be used by leaving this blank)
+        /// </summary>
         public List<Email> Email { get; set; }
+        /// <summary>
+        /// Define your own sms texts (Our default texts can be used by leaving this blank)
+        /// </summary>
         public List<SMS> SMS { get; set; }
     }
     
@@ -55,4 +95,6 @@ namespace Idfy.Signature.Models.Documents
         public string Text { get; set; }
         public string Sender { get; set; }
     }
+
+
 }
