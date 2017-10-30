@@ -10,13 +10,18 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public SignRequest SignRequest { get; set; }
         /// <summary>
-        /// Here you can setup email/sms notifications as a receipt for a signed document. 
-        /// </summary>
-        public Receipt Receipt { get; set; }
-        /// <summary>
         /// Here you can setup email/sms notifications reminding the signers that they have unsigned documents. Info: you also has to enable notifications on the signers you want to notify.
         /// </summary>
         public Reminder Reminder { get; set; }
+        /// <summary>
+        /// Here you can setup email/sms notifications as a receipt for a retrieved signature
+        /// </summary>
+        public Receipt SignatureReceipt { get; set; }
+        /// <summary>
+        /// Here you can setup email/sms notifications as a receipt for a signed document (when all the required signatures is registered). 
+        /// </summary>
+        public FinalReceipt FinalReceipt { get; set; }
+
     }
 
     public class SignRequest
@@ -26,7 +31,7 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public NotificationSetting Setting { get; set; }
         /// <summary>
-        /// Create your own email messages. <span style="color: red;">Insert [signlink] where you want the sign url to be presented</span>
+        /// Create your own email messages. <span style="color: red;">Insert {signlink} where you want the sign url to be presented</span>
         /// </summary>
         /// <summary>
         /// Define your own email texts (Our default texts can be used by leaving this blank)
@@ -61,7 +66,7 @@ namespace Idfy.Signature.Models.Documents
         public int? MaxReminders { get; set; }
     }
 
-    public class Receipt
+    public class FinalReceipt
     {
         /// <summary>
         /// Set which notfication service to use (is off by default)
@@ -71,6 +76,22 @@ namespace Idfy.Signature.Models.Documents
         /// You can include the signed document as an attachment in the receipt if you wish (We don't recommend to do this with sensitive documents). Info: you also has to enable notifications on the signers you want to notify.
         /// </summary>
         public bool IncludeSignedFile { get; set; }
+        /// <summary>
+        /// Define your own email texts (Our default texts can be used by leaving this blank)
+        /// </summary>
+        public List<Email> Email { get; set; }
+        /// <summary>
+        /// Define your own sms texts (Our default texts can be used by leaving this blank)
+        /// </summary>
+        public List<SMS> SMS { get; set; }
+    }
+
+    public class Receipt
+    {
+        /// <summary>
+        /// Set which notfication service to use (is off by default)
+        /// </summary>
+        public NotificationSetting Setting { get; set; }
         /// <summary>
         /// Define your own email texts (Our default texts can be used by leaving this blank)
         /// </summary>
