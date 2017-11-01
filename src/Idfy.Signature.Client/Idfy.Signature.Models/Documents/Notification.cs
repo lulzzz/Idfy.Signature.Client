@@ -16,14 +16,16 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Here you can setup email/sms notifications as a receipt for a retrieved signature
         /// </summary>
-        public Receipt SignatureReceipt { get; set; }
+        public SignatureReceipt SignatureReceipt { get; set; }
         /// <summary>
         /// Here you can setup email/sms notifications as a receipt for a signed document (when all the required signatures is registered). 
         /// </summary>
         public FinalReceipt FinalReceipt { get; set; }
 
     }
-
+    /// <summary>
+    /// Here you can setup email/sms notifications notifying the signer that they have a new document to sign. Info: you also has to enable notifications on the signers you want to notify.
+    /// </summary>
     public class SignRequest
     {
         /// <summary>
@@ -42,6 +44,9 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public List<SMS> SMS { get; set; }
     }
+    /// <summary>
+    ///  Here you can setup email/sms notifications reminding the signers that they have unsigned documents. Info: you also has to enable notifications on the signers you want to notify.
+    /// </summary>
     public class Reminder
     {
         /// <summary>
@@ -65,7 +70,9 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public int? MaxReminders { get; set; }
     }
-
+    /// <summary>
+    /// Here you can setup email/sms notifications as a receipt for a signed document (when all the required signatures is registered). 
+    /// </summary>
     public class FinalReceipt
     {
         /// <summary>
@@ -73,7 +80,7 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public NotificationSetting Setting { get; set; }
         /// <summary>
-        /// You can include the signed document as an attachment in the receipt if you wish (We don't recommend to do this with sensitive documents). Info: you also has to enable notifications on the signers you want to notify.
+        /// You can include the signed document as an attachment in the receipt if you wish (We don't recommend to do this with sensitive documents).
         /// </summary>
         public bool IncludeSignedFile { get; set; }
         /// <summary>
@@ -86,7 +93,10 @@ namespace Idfy.Signature.Models.Documents
         public List<SMS> SMS { get; set; }
     }
 
-    public class Receipt
+    /// <summary>
+    /// Here you can setup email/sms notifications as a receipt for a retrieved signature
+    /// </summary>
+    public class SignatureReceipt
     {
         /// <summary>
         /// Set which notfication service to use (is off by default)
@@ -104,16 +114,37 @@ namespace Idfy.Signature.Models.Documents
     
     public class Email
     {
+        /// <summary>
+        /// Email language
+        /// </summary>
         public Language Language { get; set; }
+        /// <summary>
+        /// Email subject
+        /// </summary>
         public string Subject { get; set; }
-        public string Body { get; set; }
+        /// <summary>
+        /// Insert your email text, we support plain text and markdown
+        /// </summary>
+        public string Text { get; set; }
+        /// <summary>
+        /// Name of sender
+        /// </summary>
         public string SenderName { get; set; }
     }
 
     public class SMS
     {
+        /// <summary>
+        /// Sms language
+        /// </summary>
         public Language Language { get; set; }
+        /// <summary>
+        /// Sms text
+        /// </summary>
         public string Text { get; set; }
+        /// <summary>
+        /// Sender name
+        /// </summary>
         public string Sender { get; set; }
     }
 
