@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Models.Documents
@@ -64,6 +65,7 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Define a chron expression to control the interval of the reminders (Use utc time). We use quartz cron expressions, read more about it here: http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html.
         /// </summary>
+        [Required]
         public string ChronSchedule { get; set; }
         /// <summary>
         /// Set the maximum number of reminders to be sent for each signer
