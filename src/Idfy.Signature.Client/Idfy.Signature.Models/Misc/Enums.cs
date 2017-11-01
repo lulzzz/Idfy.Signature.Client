@@ -34,6 +34,15 @@
         no_bankid_pades,
     }
 
+    public enum NotificationLanguage
+    {
+        en,
+        no,
+        da,
+        sv,
+        fi
+    }
+
     public enum Language
     {
         browser,

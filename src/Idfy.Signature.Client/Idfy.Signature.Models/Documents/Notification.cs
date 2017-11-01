@@ -117,7 +117,7 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Email language
         /// </summary>
-        public Language Language { get; set; }
+        public NotificationLanguage Language { get; set; }
         /// <summary>
         /// Email subject
         /// </summary>
@@ -137,7 +137,7 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Sms language
         /// </summary>
-        public Language Language { get; set; }
+        public NotificationLanguage Language { get; set; }
         /// <summary>
         /// Sms text
         /// </summary>
