@@ -52,7 +52,7 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Document tags
         /// </summary>
-        public string Tags { get; set; }
+        public List<string> Tags { get; set; }
         /// <summary>
         /// A list of attachment Id's
         /// </summary>

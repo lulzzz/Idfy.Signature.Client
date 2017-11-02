@@ -1,4 +1,5 @@
-﻿using Idfy.Signature.Models.Misc;
+﻿using System.Collections.Generic;
+using Idfy.Signature.Models.Misc;
 using System.ComponentModel.DataAnnotations;
 
 namespace Idfy.Signature.Models.Signers
@@ -27,9 +28,9 @@ namespace Idfy.Signature.Models.Signers
         /// </summary>
         public bool? NotificationsEnabled { get; set; }
         /// <summary>
-        /// Coming soon
+        /// Signer tags
         /// </summary>
-        public string Tags { get; set; }
+        public List<string> Tags { get; set; }
         /// <summary>
         /// You can define a specific sign order /queue for the signers if you want to.
         /// </summary>
