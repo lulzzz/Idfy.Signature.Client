@@ -23,8 +23,9 @@ namespace Idfy.Signature.Client.Client
         #region Files
 
         internal static string GetDocumentFile(Guid accountId, Guid documentId, FileFormat? fileFormat) => $"api/files/{accountId}/{documentId}?fileFormat={fileFormat}";
-
+        internal static string GetAttachmentFile(Guid accountId, Guid documentId, Guid attachmentId, FileFormat? fileFormat) => $"api/files/attachment/{accountId}/{documentId}/{attachmentId}?fileFormat={fileFormat}";
         internal static string GetSignerFile(Guid accountId, Guid documentId, Guid signerId, SignerFileFormat? fileFormat) => $"api/files/signer/{accountId}/{documentId}?fileFormat={fileFormat}&signerId={signerId}";
+        internal static string GetAttachmentSignerFile(Guid accountId, Guid documentId, Guid attachmentId, Guid signerId, SignerFileFormat? fileFormat) => $"api/files/signer/attachment/{accountId}/{documentId}/{attachmentId}?fileFormat={fileFormat}&signerId={signerId}";
 
 
         #endregion

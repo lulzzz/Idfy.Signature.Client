@@ -2,6 +2,17 @@
 
 namespace Idfy.Signature.Models.File
 {
+
+    public class AttachmentFileResponse : DocumentFileResponse
+    {
+        public Guid AttachmentId { get; set; }
+    }
+
+    public class AttachmentSignerFileResponse : SignerFileResponse
+    {
+        public Guid AttachmentId { get; set; }
+    }
+
     public class DocumentFileResponse
     {
         public Guid DocumentId { get; set; }

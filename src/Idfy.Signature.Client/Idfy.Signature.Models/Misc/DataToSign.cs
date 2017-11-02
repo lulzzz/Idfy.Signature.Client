@@ -19,7 +19,7 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public string Base64ContentStyleSheet { get; set; }
         /// <summary>
-        /// The document FileName, has to include a valid extension (.pdf, .xml, .txt)
+        /// The document FileName, has to include a valid extension (.pdf, .xml, .txt, .doc, .docx, .rtf, .ott, odt)
         /// </summary>
         [Required]
         [ValidateFileName]

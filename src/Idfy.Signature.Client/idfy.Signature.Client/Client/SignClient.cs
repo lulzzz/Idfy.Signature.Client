@@ -195,14 +195,48 @@ namespace Idfy.Signature.Client.Client
             return attachment.Id;
         }
 
-        public async Task<Attachment> GetAttachment(Guid attachmentId)
+        public async Task<AttachmentResponse> GetAttachment(Guid attachmentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = BaseUrl + SignatureEndpoints.GetAttachment(AccountId, attachmentId);
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
 
-            return result.Deserialize<Attachment>();
+            return result.Deserialize<AttachmentResponse>();
+        }
+
+        public async Task<AttachmentFileResponse> GetAttachmentFile(Guid documentId, Guid attachmentId, FileFormat fileFormat)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEndpoints.GetAttachmentFile(AccountId, documentId, attachmentId, fileFormat);
+
+            var result = await HttpWrapper.RunDownloadAsync(url, Token);
+
+            return new AttachmentFileResponse()
+            {
+                Document = result.Bytes,
+                DocumentId = documentId,
+                FileFormat = fileFormat,
+                FileName = result.Filename,
+                AttachmentId = attachmentId
+            };
+        }
+
+        public async Task<AttachmentFileResponse> GetAttachmentFileForSigner(Guid documentId, Guid attachmentId, Guid signerId, SignerFileFormat fileFormat)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEndpoints.GetAttachmentSignerFile(AccountId, documentId, attachmentId, signerId, fileFormat);
+
+            var result = await HttpWrapper.RunDownloadAsync(url, Token);
+
+            return new AttachmentFileResponse()
+            {
+                AttachmentId = attachmentId,
+                Document = result.Bytes,
+                DocumentId = documentId,
+                FileFormat = fileFormat == SignerFileFormat.native ? FileFormat.native : FileFormat.standard_packaging,
+                FileName = result.Filename,
+            };
         }
 
         public async Task<SignerResponse> GetSigner(Guid documentId, Guid signerId)

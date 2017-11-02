@@ -38,7 +38,7 @@ namespace Idfy.Signature.Models.Attachment
         /// </summary>
         public string Description { get; set; }
         /// <summary>
-        /// Coming soon: Choose between the following:
+        /// Choose between the following:
         /// * <b>show_accept:</b> The signer will see the attachment before signing the main document (is default now)
         /// * <b>read_accept:</b> The signer have to see the entire document before they can continue, 
         /// * <b>sign:</b> The signer has to sign the attachment (extra cost per signature)

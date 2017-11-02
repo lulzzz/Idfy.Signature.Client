@@ -88,7 +88,25 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="attachmentId"></param>
         /// <returns></returns>
-        Task<Attachment> GetAttachment(Guid attachmentId);
+        Task<AttachmentResponse> GetAttachment(Guid attachmentId);
+
+        /// <summary>
+        /// Get an attachment file
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <param name="attachmentId"></param>
+        /// <param name="fileFormat"></param>
+        /// <returns></returns>
+        Task<AttachmentFileResponse> GetAttachmentFile(Guid documentId, Guid attachmentId, FileFormat fileFormat);
+
+        /// <summary>
+        /// Retrieves a signed attachment file for a specific signer
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <param name="attachmentId"></param>
+        /// <param name="signerId"></param>
+        /// <returns></returns>
+        Task<AttachmentFileResponse> GetAttachmentFileForSigner(Guid documentId, Guid attachmentId, Guid signerId, SignerFileFormat fileFormat);
 
         /// <summary>
         /// Get a signer

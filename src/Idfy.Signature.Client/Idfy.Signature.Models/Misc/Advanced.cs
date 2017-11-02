@@ -1,14 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Idfy.Signature.Models.Misc
 {
     public class Advanced
     {
         /// <summary>
-        /// Mark the document with tags, these tags can be used to query for document data / events at a later time. Please separate the tags with comma (ie: "Tags":"awesome,contract")
+        /// Mark the document with tags, these tags can be used to query for document data / events at a later time.
         /// </summary>
-        [RegularExpression("^[a-zA-Z,0-9]+$", ErrorMessage = "A tag may only contain letters from a-z/A-Z, and or numbers")]
-        public string Tags { get; set; }
+        //[RegularExpression("^[a-zA-Z,0-9]+$", ErrorMessage = "A tag may only contain letters from a-z/A-Z, and or numbers")]
+        public List<string> Tags { get; set; }
         /// <summary>
         /// Set how many attachments this signjob should have, when the document is created you can upload the attachments [here](#operation/Attachment_Create). <span style="color: red">
         /// Beware: if you set this value to 3, you MUST upload 3 attachments before anyone can sign this document.</span>
@@ -19,6 +20,9 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public int RequiredSignatures { get; set; }
 
+        /// <summary>
+        /// The name of the application that created the document. Used for Idfy statistics
+        /// </summary>
         public string CreatedByApplication { get; set; }
      
         /// <summary>
@@ -26,10 +30,7 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public bool GetSocialSecurityNumber { get; set; }
 
-        /// <summary>
-        /// Define this to get information about the sign process in a webhook
-        /// </summary>
-        public string Webhook { get; set; }
+   
         /// <summary>
         ///Coming soon: Do you want to collect extra info about the signature process? (for example prokura info)
         /// </summary>
