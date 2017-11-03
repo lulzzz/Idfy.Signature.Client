@@ -44,10 +44,6 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public TimeToLive TimeToLive { get; set; }
         /// <summary>
-        /// Include your own pades template
-        /// </summary>
-        public string PadesTemplateId { get; set; }
-        /// <summary>
         /// Set department Id to mark invoice with department
         /// </summary>
         public string DepartmentId { get; set; }
