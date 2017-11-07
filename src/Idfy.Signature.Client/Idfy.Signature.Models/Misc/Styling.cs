@@ -16,13 +16,16 @@
     public enum Theme
     {
         Default,
-        Teal,
-        Blue,
-        Dark,
-        Pink,
         Black,
+        Blue,
+        Cyan,
+        Dark,
+        Lime,
+        Neutral,
+        Pink,
         Purple,
-        Neutral
+        Red,
+        Teal,
     }
 
     public enum Spinner
