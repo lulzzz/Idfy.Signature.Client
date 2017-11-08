@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.Caching;
 using System.Security;
+#if IS_NET
+using System.Runtime.Caching;
+#else
+using Microsoft.Extensions.Caching.Memory;
+#endif
 
 namespace Idfy.Signature.Client.Oauth
 {
@@ -29,15 +33,29 @@ namespace Idfy.Signature.Client.Oauth
         {
             _clientId = clientId;
             _secret = secret;
-            _cache = MemoryCache.Default;
             _oauthTokenUrl = oauthTokenUrl;
+#if IS_NET
+            _cache = MemoryCache.Default;
+#else
+            _cache = new MemoryCache(new MemoryCacheOptions()
+            {
+
+            });
+#endif
         }
 
         public OauthClient(string clientId, string secret, OauthTokenEndpoint oauthTokenEndpoint)
         {
             _clientId = clientId;
             _secret = secret;
+#if IS_NET
             _cache = MemoryCache.Default;
+#else
+            _cache = new MemoryCache(new MemoryCacheOptions()
+            {
+
+            });
+#endif
             switch (oauthTokenEndpoint)
             {
                 case OauthTokenEndpoint.SignereTest:
@@ -55,11 +73,18 @@ namespace Idfy.Signature.Client.Oauth
         public string GetAccessToken(string scope)
         {
             var cacheKey = $"token:{_clientId}-{scope}";
+#if IS_NET
             if (_cache.Contains(cacheKey))
             {
                 var cachedToken = _cache[cacheKey] as SecureString;
-                return cachedToken.SecureStringToString();
+                return Extensions.SecureStringToString(cachedToken);
             }
+#else
+            if (_cache.TryGetValue<SecureString>(cacheKey, out var cachedToken))
+            {
+                return Extensions.SecureStringToString(cachedToken);
+            }
+#endif
 
             var headervalue = new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{_clientId}:{_secret}")));
@@ -84,7 +109,17 @@ namespace Idfy.Signature.Client.Oauth
                     var raw = Extensions.RunSync(() => result.Content.ReadAsStringAsync());
                     var tokenData = raw.Deserialize<AccessToken>();
                     var secureToken = tokenData.access_token.ToSecureString();
-                    _cache.Add(cacheKey, secureToken, DateTimeOffset.UtcNow.AddSeconds(tokenData.expires_in - 1000));
+#if IS_NET
+                    _cache.Add(cacheKey, secureToken,new CacheItemPolicy()
+                    {
+                        AbsoluteExpiration = DateTimeOffset.UtcNow.AddSeconds(tokenData.expires_in - 1000)
+                    });
+#else
+                    _cache.Set(cacheKey, secureToken, new MemoryCacheEntryOptions()
+                    {
+                        AbsoluteExpiration = DateTimeOffset.UtcNow.AddSeconds(tokenData.expires_in - 1000)
+                    });
+#endif
                     return tokenData.access_token;
                 }
                 else
