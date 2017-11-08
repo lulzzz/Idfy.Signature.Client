@@ -4,13 +4,12 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace Idfy.Signature.Client
 {
     public static class Extensions
     {
-        private static readonly JavaScriptSerializer Serializer;
         private static readonly JsonFormatter Formatter;
 
         private static readonly TaskFactory _myTaskFactory = new TaskFactory(CancellationToken.None, TaskCreationOptions.None,
@@ -18,10 +17,6 @@ namespace Idfy.Signature.Client
 
         static Extensions()
         {
-            Serializer = new JavaScriptSerializer
-            {
-                MaxJsonLength = int.MaxValue
-            };
             Formatter = new JsonFormatter();
         }
 
@@ -49,19 +44,19 @@ namespace Idfy.Signature.Client
 
         public static string Serialize<T>(this T obj)
         {
-            var json = Serializer.Serialize(obj);
+            var json = JsonConvert.SerializeObject(obj);
             return json;
         }
 
         public static string SerializeAndFormat<T>(this T obj)
         {
-            var json = Serializer.Serialize(obj);
+            var json = JsonConvert.SerializeObject(obj);
             return Formatter.Format(json);
         }
 
         public static T Deserialize<T>(this string json)
         {
-            var obj = Serializer.Deserialize<T>(json);
+            var obj = JsonConvert.DeserializeObject<T>(json);
             return obj;
         }
 
