@@ -10,11 +10,18 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
     <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\idfy.Signature.Client\Idfy.Signature.Client.csproj" />
     <ProjectReference Include="..\Idfy.Signature.Models\Idfy.Signature.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testcfg.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
