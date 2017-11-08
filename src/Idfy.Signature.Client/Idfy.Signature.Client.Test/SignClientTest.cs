@@ -4,17 +4,13 @@ using Idfy.Signature.Client.Client;
 using Idfy.Signature.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Idfy.Signature.Models;
+using System.Configuration;
 
 namespace Idfy.Signature.Client.Test
 {
     [TestClass]
     public class SignClientTest
     {
-        private const string AccountId = "";
-        private const string ClientId = "";
-        private const string ClientSecret = "";
-        private const string Scope = OauthScopes.Root;
-        private const bool IsProd = false;
 
         private ISignClient Client { get; set; }
 
@@ -22,11 +18,11 @@ namespace Idfy.Signature.Client.Test
         public void Initialize()
         {
             Client = new SignClient(
-                Guid.Parse(AccountId),
-                ClientId,
-                ClientSecret,
-                Scope,
-                IsProd
+                Guid.Parse(Config.Get("AccountId")),
+                Config.Get("ClientId"),
+                Config.Get("ClientSecret"),
+                Config.Get("Scope"),
+                bool.Parse(Config.Get("IsProd"))
             );
         }
 
