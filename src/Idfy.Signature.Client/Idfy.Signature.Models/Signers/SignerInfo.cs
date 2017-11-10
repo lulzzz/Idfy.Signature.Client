@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Idfy.Signature.Models.Attributes;
 using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Models.Signers
@@ -22,7 +21,6 @@ namespace Idfy.Signature.Models.Signers
         /// <summary>
         /// The signers mobile, define this if you are using notifications
         /// </summary>
-        [ValidateMobileSimple]
         public Mobile Mobile { get; set; }
         /// <summary>
         /// The signers organization info

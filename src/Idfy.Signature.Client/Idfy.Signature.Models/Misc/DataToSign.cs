@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Idfy.Signature.Models.Attributes;
 
 namespace Idfy.Signature.Models.Misc
 {
@@ -22,7 +21,6 @@ namespace Idfy.Signature.Models.Misc
         /// The document FileName, has to include a valid extension (.pdf, .xml, .txt, .doc, .docx, .rtf, .ott, odt)
         /// </summary>
         [Required]
-        [ValidateFileName]
         public string FileName { get; set; }
         /// <summary>
         /// Convert a non PDF file to PDF, supported formats are word documents, rich texformat and open office (.doc, docx, .rtf .odt and ott), Remark the document that is signed is not the original document.
