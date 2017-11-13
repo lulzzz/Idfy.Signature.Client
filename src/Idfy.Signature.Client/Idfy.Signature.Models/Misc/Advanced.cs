@@ -46,6 +46,7 @@ namespace Idfy.Signature.Models.Misc
         /// <summary>
         /// Set department Id to mark invoice with department
         /// </summary>
+        [StringLength(100, ErrorMessage = "Departement Id Cannot be more than 100 characters long")]
         public string DepartmentId { get; set; }
     }
 

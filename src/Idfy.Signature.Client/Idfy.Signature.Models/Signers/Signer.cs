@@ -10,6 +10,7 @@ namespace Idfy.Signature.Models.Signers
         /// Your reference for the signer
         /// </summary>
         [Required]
+        [StringLength(255, MinimumLength = 4, ErrorMessage = "External Signer Id must be between 4 and 255 characters long")]
         public string ExternalSignerId { get; set; }
         /// <summary>
         /// Return urls and domain settings
