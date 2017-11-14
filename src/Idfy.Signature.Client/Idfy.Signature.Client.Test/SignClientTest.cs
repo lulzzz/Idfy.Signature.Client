@@ -24,6 +24,16 @@ namespace Idfy.Signature.Client.Test
                 Config.Get("Scope"),
                 bool.Parse(Config.Get("IsProd"))
             );
+            var overrideBaseUrl = Config.Get("BaseUrlOverride");
+            var overrideOauthUrl = Config.Get("OauthUrlOverride");
+            if(!string.IsNullOrWhiteSpace(overrideBaseUrl))
+            {
+                Client.OverrideBaseUrl = overrideBaseUrl;
+            }
+            if(!string.IsNullOrWhiteSpace(overrideOauthUrl))
+            {
+                Client.OverrideOauthTokenUrl = overrideOauthUrl; 
+            }
         }
 
         private async Task<Models.Documents.CreateDocumentResponse> CreateDoc(Func<Models.Documents.CreateDocumentRequest, Models.Documents.CreateDocumentRequest> modifyDefault = null)

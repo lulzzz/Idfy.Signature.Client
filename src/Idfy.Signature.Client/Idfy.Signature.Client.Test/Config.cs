@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,7 +19,9 @@ namespace Idfy.Signature.Client.Test
                 {
                     if (_dict == null)
                     {
-                        _dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("testcfg.json"));
+                        var file = JsonConvert.DeserializeObject<JObject>(File.ReadAllText("testcfg.json"));
+                        var selected = file.Value<string>("selected");
+                        _dict = file.GetValue(selected).ToObject<Dictionary<string, string>>();
                     }
                     return _dict;
                 } catch(Exception e)
