@@ -30,10 +30,6 @@ namespace Idfy.Signature.Models.Documents
         [Required]
         public ContactDetails ContactDetails { get; set; }
         /// <summary>
-        /// For advanced users
-        /// </summary>
-        public Advanced Advanced { get; set; }
-        /// <summary>
         /// Manage notifications
         /// </summary>
         public Notification Notification { get; set; }

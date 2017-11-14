@@ -23,5 +23,10 @@ namespace Idfy.Signature.Models.Signers
         /// A dicitonary with extra information from each identityprovider, and extra services. See developer documentation for more information
         /// </summary>
         public Dictionary<string, string> MetaData { get; set; }
+
+        /// <summary>
+        /// Extra info about the signer as requested
+        /// </summary>
+        public new ExtraInfoSignerResponse ExtraInfo { get; set; }
     }
 }

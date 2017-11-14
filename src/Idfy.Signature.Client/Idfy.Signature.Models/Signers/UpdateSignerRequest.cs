@@ -18,7 +18,7 @@ namespace Idfy.Signature.Models.Signers
         /// <summary>
         ///Coming soon: Do you want to collect extra info about this specific signer? (for example personal information)
         /// </summary>
-        public ExtraInfo ExtraInfo { get; set; }
+        public ExtraInfoSignerRequest ExtraInfo { get; set; }
         /// <summary>
         /// Here you can set language, styling and create dialogs the signer have to read before/after the signing
         /// </summary>

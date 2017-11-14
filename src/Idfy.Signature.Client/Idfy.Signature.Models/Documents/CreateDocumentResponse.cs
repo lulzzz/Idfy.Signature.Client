@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Idfy.Signature.Models.Misc;
 using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Models.Documents
@@ -25,6 +26,10 @@ namespace Idfy.Signature.Models.Documents
         /// Overall document status
         /// </summary>
         public Status Status { get; set; }
+        /// <summary>
+        /// For advanced users
+        /// </summary>
+        public AdvancedResponse Advanced { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Idfy.Signature.Models.Misc;
 using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Models.Documents
@@ -11,5 +12,9 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         [Required]
         public List<Signer> Signers { get; set; }
+        /// <summary>
+        /// For advanced users
+        /// </summary>
+        public Advanced Advanced { get; set; }
     }
 }

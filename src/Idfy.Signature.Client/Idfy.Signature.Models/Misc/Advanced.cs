@@ -3,12 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Idfy.Signature.Models.Misc
 {
+    public class AdvancedResponse : Advanced
+    {
+        /// <summary>
+        /// Extra info about the document as requested
+        /// </summary>
+        public new ExtraInfoDocumentResponse ExtraInfo { get; set; }
+    }
+
     public class Advanced
     {
         /// <summary>
         /// Mark the document with tags, these tags can be used to query for document data / events at a later time.
         /// </summary>
-        //[RegularExpression("^[a-zA-Z,0-9]+$", ErrorMessage = "A tag may only contain letters from a-z/A-Z, and or numbers")]
         public List<string> Tags { get; set; }
         /// <summary>
         /// Set how many attachments this signjob should have, when the document is created you can upload the attachments [here](#operation/Attachment_Create). <span style="color: red">
@@ -19,22 +26,18 @@ namespace Idfy.Signature.Models.Misc
         /// Set how many signatures this document needs before it can be sealed and sat to complete
         /// </summary>
         public int RequiredSignatures { get; set; }
-
         /// <summary>
         /// The name of the application that created the document. Used for Idfy statistics
         /// </summary>
         public string CreatedByApplication { get; set; }
-     
         /// <summary>
         /// If your certificate allows it you can retrieve the signers social security number after a successful sign session
         /// </summary>
         public bool GetSocialSecurityNumber { get; set; }
-
-   
         /// <summary>
         ///Coming soon: Do you want to collect extra info about the signature process? (for example prokura info)
         /// </summary>
-        public ExtraInfo ExtraInfo { get; set; }
+        public ExtraInfoDocumentRequest ExtraInfo { get; set; }
         /// <summary>
         /// Security settings
         /// </summary>
