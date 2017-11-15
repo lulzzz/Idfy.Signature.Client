@@ -9,7 +9,7 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public List<DocumentAddon> Addon { get; set; }
         /// <summary>
-        /// Add your own user account if you wish. (Required for the norwegian national registry)
+        /// Add a dictionay of special properties, see our documentation for more info
         /// </summary>
         public IDictionary<SpesialProperty, string> SpecialProperties { get; set; }
     }
@@ -29,7 +29,7 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public List<SignerAddon> Addon { get; set; }
         /// <summary>
-        /// Add your own user account if you wish. (Required for the norwegian national registry)
+        /// Add a dictionay of special properties, see our documentation for more info
         /// </summary>
         public IDictionary<SpesialProperty, string> SpecialProperties { get; set; }
     }
@@ -37,7 +37,7 @@ namespace Idfy.Signature.Models.Misc
     public class ExtraInfoSignerResponse : ExtraInfoSignerRequest
     {
         /// <summary>
-        /// Results as a dictionary with json
+        /// Results as a dictionary with json result. See our documentation for model examples.
         /// </summary>
         public IDictionary<SignerAddon, string> Results { get; set; }
     }
