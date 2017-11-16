@@ -34,7 +34,8 @@ namespace Idfy.Signature.Client.Test
         public static string Get(string key)
         {
 #if DEBUG
-            return ConfigDictionary[key];
+            ConfigDictionary.TryGetValue(key, out var res);
+            return res;
 #else
             return Environment.GetEnvironmentVariable("TESTCFG_" + key);
 #endif
