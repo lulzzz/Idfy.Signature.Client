@@ -5,6 +5,7 @@ using Idfy.Signature.Models.Attachment;
 using Idfy.Signature.Models.Documents;
 using Idfy.Signature.Models.File;
 using Idfy.Signature.Models.JWT;
+using Idfy.Signature.Models.Notifications;
 using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Client.Client
@@ -149,6 +150,14 @@ namespace Idfy.Signature.Client.Client
         /// <param name="jwt"></param>
         /// <returns></returns>
         Task<JwtValidationResponse> ValidateJwt(JwtValidationRequest jwt);
+
+        /// <summary>
+        /// List all sent/attemped to send notifications for a document
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <returns></returns>
+        Task<IEnumerable<NotificationLogItem>> ListNotifications(Guid documentId);
+
 
         string OverrideBaseUrl { set; }
         string OverrideOauthTokenUrl { set; }

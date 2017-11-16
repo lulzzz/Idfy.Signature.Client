@@ -37,9 +37,9 @@ namespace Idfy.Signature.Models.Signers
         /// </summary>
         public UI Ui { get; set; }
         /// <summary>
-        /// Enable email/sms notifications for this specific signer
+        /// Enable and setup email/sms notifications for this specific signer
         /// </summary>
-        public bool NotificationsEnabled { get; set; }
+        public Notifications Notifications { get; set; }
         /// <summary>
         /// Coming soon
         /// </summary>
@@ -56,6 +56,19 @@ namespace Idfy.Signature.Models.Signers
         /// How long before the signers url should expire? Utc date in ticks. This can be set if you only want a limited time to live for each sign url (If you generate a new url at a later time this will also have this limited lifetime). Defaults to the document lifetime.
         /// </summary>
         public long SignUrlExpires { get; set; }
+    }
+
+    public class Notifications
+    {
+        /// <summary>
+        /// Setup what kind of notifications this signer should get. Defaults to off
+        /// </summary>
+        public Dictionary<NotificationType, NotificationSetting> Setup { get; set; }
+        /// <summary>
+        /// If you create your own notifications texts (See the root object -> Notification), you can create your own merge fields with your own keys. 
+        /// You can then specify the text you want to insert in these fields per signer in this dictionary. Set the dictionary key to the same value as the merge field value in your notification text, and the value to the text you want us to merge in.
+        /// </summary>
+        public Dictionary<string, string> MergeFields { get; set; }
     }
 
     public class UI

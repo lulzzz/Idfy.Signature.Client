@@ -4,14 +4,17 @@ using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Models.Documents
 {
+    /// <summary>
+    /// Setup your own notification texts, and specify specail settings. Info: you also has to setup notifications on the signers you want to notify.
+    /// </summary>
     public class Notification
     {
         /// <summary>
-        /// Here you can setup email/sms notifications notifying the signer that they have a new document to sign. Info: you also has to enable notifications on the signers you want to notify.
+        /// Here you can setup email/sms notifications notifying the signer that they have a new document to sign.
         /// </summary>
         public SignRequest SignRequest { get; set; }
         /// <summary>
-        /// Here you can setup email/sms notifications reminding the signers that they have unsigned documents. Info: you also has to enable notifications on the signers you want to notify.
+        /// Here you can setup email/sms notifications reminding the signers that they have unsigned documents.
         /// </summary>
         public Reminder Reminder { get; set; }
         /// <summary>
@@ -25,43 +28,17 @@ namespace Idfy.Signature.Models.Documents
 
     }
     /// <summary>
-    /// Here you can setup email/sms notifications notifying the signer that they have a new document to sign. Info: you also has to enable notifications on the signers you want to notify.
+    /// Here you can setup email/sms notifications notifying the signer that they have a new document to sign.
     /// </summary>
-    public class SignRequest
+    public class SignRequest : BaseNotification
     {
-        /// <summary>
-        /// Set which notfication service to use (is off by default)
-        /// </summary>
-        public NotificationSetting Setting { get; set; }
-        /// <summary>
-        /// Create your own email messages. <span style="color: red;">Insert {signlink} where you want the sign url to be presented</span>
-        /// </summary>
-        /// <summary>
-        /// Define your own email texts (Our default texts can be used by leaving this blank)
-        /// </summary>
-        public List<Email> Email { get; set; }
-        /// <summary>
-        /// Define your own sms texts (Our default texts can be used by leaving this blank)
-        /// </summary>
-        public List<SMS> SMS { get; set; }
+
     }
     /// <summary>
-    ///  Here you can setup email/sms notifications reminding the signers that they have unsigned documents. Info: you also has to enable notifications on the signers you want to notify.
+    ///  Here you can setup email/sms notifications reminding the signers that they have unsigned documents. 
     /// </summary>
-    public class Reminder
+    public class Reminder : BaseNotification
     {
-        /// <summary>
-        /// Set which notfication service to use (is off by default)
-        /// </summary>
-        public NotificationSetting Setting { get; set; }
-        /// <summary>
-        /// Define your own email texts (Our default texts can be used by leaving this blank)
-        /// </summary>
-        public List<Email> Email { get; set; }
-        /// <summary>
-        /// Define your own sms texts (Our default texts can be used by leaving this blank)
-        /// </summary>
-        public List<SMS> SMS { get; set; }
         /// <summary>
         /// Define a chron expression to control the interval of the reminders (Use utc time). We use quartz cron expressions, read more about it here: http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html.
         /// </summary>
@@ -75,16 +52,23 @@ namespace Idfy.Signature.Models.Documents
     /// <summary>
     /// Here you can setup email/sms notifications as a receipt for a signed document (when all the required signatures is registered). 
     /// </summary>
-    public class FinalReceipt
+    public class FinalReceipt : BaseNotification
     {
-        /// <summary>
-        /// Set which notfication service to use (is off by default)
-        /// </summary>
-        public NotificationSetting Setting { get; set; }
         /// <summary>
         /// You can include the signed document as an attachment in the receipt if you wish (We don't recommend to do this with sensitive documents).
         /// </summary>
         public bool IncludeSignedFile { get; set; }
+    }
+
+    /// <summary>
+    /// Here you can setup email/sms notifications as a receipt for a retrieved signature
+    /// </summary>
+    public class SignatureReceipt : BaseNotification
+    {
+    }
+
+    public class BaseNotification
+    {
         /// <summary>
         /// Define your own email texts (Our default texts can be used by leaving this blank)
         /// </summary>
@@ -95,25 +79,6 @@ namespace Idfy.Signature.Models.Documents
         public List<SMS> SMS { get; set; }
     }
 
-    /// <summary>
-    /// Here you can setup email/sms notifications as a receipt for a retrieved signature
-    /// </summary>
-    public class SignatureReceipt
-    {
-        /// <summary>
-        /// Set which notfication service to use (is off by default)
-        /// </summary>
-        public NotificationSetting Setting { get; set; }
-        /// <summary>
-        /// Define your own email texts (Our default texts can be used by leaving this blank)
-        /// </summary>
-        public List<Email> Email { get; set; }
-        /// <summary>
-        /// Define your own sms texts (Our default texts can be used by leaving this blank)
-        /// </summary>
-        public List<SMS> SMS { get; set; }
-    }
-    
     public class Email
     {
         /// <summary>

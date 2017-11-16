@@ -45,5 +45,13 @@ namespace Idfy.Signature.Client.Client
         internal static string ListSigners(Guid accountId, Guid documentId) => $"api/signers/{accountId}/{documentId}";
         public static string ValidateJwt(Guid accountId) => $"api/jwt/{accountId}";
 
+
+        #region Notifications
+
+        internal static string ListNotifications(Guid accountId, Guid documentId) => $"api/notifications/{accountId}/{documentId}";
+
+
+        #endregion
+
     }
 }

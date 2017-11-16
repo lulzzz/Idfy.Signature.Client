@@ -98,6 +98,15 @@
         aml_mode
     }
 
+    public enum NotificationType
+    {
+        off,
+        request,
+        reminder,
+        signature_receipt,
+        final_receipt
+    }
+
     public enum NotificationSetting
     {
         off,

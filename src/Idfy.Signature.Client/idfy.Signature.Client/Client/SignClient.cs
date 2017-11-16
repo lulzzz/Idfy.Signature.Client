@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Models;
@@ -7,6 +8,7 @@ using Idfy.Signature.Models.Documents;
 using Idfy.Signature.Models.File;
 using Idfy.Signature.Models.JWT;
 using Idfy.Signature.Models.Misc;
+using Idfy.Signature.Models.Notifications;
 using Idfy.Signature.Models.Signers;
 
 namespace Idfy.Signature.Client.Client
@@ -18,8 +20,6 @@ namespace Idfy.Signature.Client.Client
             base(accountId, oauthClientId, oauthSecret, scope, isProd)
         {
         }
-
-       
 
         public string OverrideBaseUrl
         {
@@ -148,6 +148,14 @@ namespace Idfy.Signature.Client.Client
             var result = await HttpWrapper.RunPostAsync(url, request, Token);
 
             return result.Deserialize<DocumentSummary>();
+        }
+
+        public async Task<IEnumerable<NotificationLogItem>> ListNotifications(Guid documentId)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEndpoints.ListNotifications(AccountId, documentId);
+            var result = await HttpWrapper.RunGetQueryAsync(url, Token);
+            return result.Deserialize<List<NotificationLogItem>>();
         }
 
         public async Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat fileFormat)

@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Client.Client;
 using Idfy.Signature.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Idfy.Signature.Models;
 using System.Configuration;
+using Idfy.Signature.Models.Signers;
+using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Client.Test
 {
@@ -59,6 +62,7 @@ namespace Idfy.Signature.Client.Test
                 return m;
             });
             Assert.IsNotNull(createResponse.Signers?[0]?.Url, "Failed to create test document");
+            await Task.Delay(1000);
             var getResponse = await Client.GetDocument(createResponse.DocumentId);
             Assert.AreEqual(createResponse.Title, getResponse.Title);
             Assert.AreEqual(createResponse.Description, getResponse.Description);
@@ -106,7 +110,13 @@ namespace Idfy.Signature.Client.Test
                             RedirectMode = Models.Misc.RedirectMode.redirect,
                             Success = "www.vg.no",
                         },
-                        NotificationsEnabled = true,
+                        Notifications = new Notifications()
+                        {
+                            Setup = new Dictionary<NotificationType, NotificationSetting>()
+                            {
+                                {NotificationType.off, NotificationSetting.off }
+                            }
+                        },
                         SignatureType = new Models.Signers.SignatureType()
                         {
                             SignatureMethods = new System.Collections.Generic.List<Models.Misc.SignatureMethod>()
