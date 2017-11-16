@@ -24,9 +24,9 @@ namespace Idfy.Signature.Models.Signers
         /// </summary>
         public UI Ui { get; set; }
         /// <summary>
-        /// Enable email/sms notifications for this specific signer
+        /// Enable / setup email/sms notifications for this specific signer
         /// </summary>
-        public bool? NotificationsEnabled { get; set; }
+        public Notifications Notifications { get; set; }
         /// <summary>
         /// Signer tags
         /// </summary>
