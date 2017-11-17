@@ -46,6 +46,10 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public string ExternalSignerId { get; set; }
         /// <summary>
+        /// Search for document title
+        /// </summary>
+        public string Title { get; set; }
+        /// <summary>
         /// Documents created before this date
         /// </summary>
         public long? ToDate { get; set; }
