@@ -12,11 +12,11 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Document id
         /// </summary>
-        public string DocumentId { get; set; }
+        public Guid DocumentId { get; set; }
         /// <summary>
         /// Account id
         /// </summary>
-        public string AccountId { get; set; }
+        public Guid AccountId { get; set; }
         /// <summary>
         /// Document title
         /// </summary>
