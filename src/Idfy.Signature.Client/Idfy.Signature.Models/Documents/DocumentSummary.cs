@@ -10,6 +10,10 @@ namespace Idfy.Signature.Models.Documents
     public class DocumentSummary
     {
         /// <summary>
+        /// Document id
+        /// </summary>
+        public string DocumentId { get; set; }
+        /// <summary>
         /// Document title
         /// </summary>
         public string Title { get; set; }
