@@ -14,6 +14,10 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public string DocumentId { get; set; }
         /// <summary>
+        /// Account id
+        /// </summary>
+        public string AccountId { get; set; }
+        /// <summary>
         /// Document title
         /// </summary>
         public string Title { get; set; }
