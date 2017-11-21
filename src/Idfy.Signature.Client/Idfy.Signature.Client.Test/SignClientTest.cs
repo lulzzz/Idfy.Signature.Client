@@ -114,7 +114,7 @@ namespace Idfy.Signature.Client.Test
                         {
                             Setup = new Dictionary<NotificationType, NotificationSetting>()
                             {
-                                {NotificationType.off, NotificationSetting.off }
+                                {NotificationType.request, NotificationSetting.off }
                             }
                         },
                         SignatureType = new Models.Signers.SignatureType()
