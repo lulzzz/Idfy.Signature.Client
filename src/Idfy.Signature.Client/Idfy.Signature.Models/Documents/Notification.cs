@@ -32,7 +32,10 @@ namespace Idfy.Signature.Models.Documents
     /// </summary>
     public class SignRequest : BaseNotification
     {
-
+        /// <summary>
+        /// Set this to true if you want to include the unsigned main document as an attachment to this email message
+        /// </summary>
+        public bool IncludeOriginalFile { get; set; }
     }
     /// <summary>
     ///  Here you can setup email/sms notifications reminding the signers that they have unsigned documents. 
