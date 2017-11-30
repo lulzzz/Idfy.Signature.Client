@@ -87,9 +87,33 @@ namespace Idfy.Signature.Client.Client
         /// <summary>
         /// Get an attachment
         /// </summary>
+        /// <param name="documentId"></param>
         /// <param name="attachmentId"></param>
         /// <returns></returns>
-        Task<AttachmentResponse> GetAttachment(Guid attachmentId);
+        Task<AttachmentResponse> GetAttachment(Guid documentId, Guid attachmentId);
+
+        /// <summary>
+        /// List all attachments for a document
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <returns></returns>
+        Task<List<AttachmentListItem>> ListAttachments(Guid documentId);
+
+        /// <summary>
+        /// Delete an attachment on a specified document
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <param name="attachmentId"></param>
+        /// <returns></returns>
+        Task DeleteAttachment(Guid documentId, Guid attachmentId);
+
+        /// <summary>
+        /// Update an attachment on a specified document
+        /// </summary>
+        /// <param name="documentId"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<AttachmentResponse> UpdateAttachment(Guid documentId, UpdateAttachmentRequest request);
 
         /// <summary>
         /// Get an attachment file

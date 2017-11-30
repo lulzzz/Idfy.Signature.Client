@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Models;
@@ -7,7 +6,6 @@ using Idfy.Signature.Models.Attachment;
 using Idfy.Signature.Models.Documents;
 using Idfy.Signature.Models.File;
 using Idfy.Signature.Models.JWT;
-using Idfy.Signature.Models.Misc;
 using Idfy.Signature.Models.Notifications;
 using Idfy.Signature.Models.Signers;
 
@@ -203,14 +201,41 @@ namespace Idfy.Signature.Client.Client
             return attachment.Id;
         }
 
-        public async Task<AttachmentResponse> GetAttachment(Guid attachmentId)
+        public async Task<AttachmentResponse> GetAttachment(Guid documentId, Guid attachmentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
-            var url = BaseUrl + SignatureEndpoints.GetAttachment(AccountId, attachmentId);
+            var url = BaseUrl + SignatureEndpoints.GetAttachment(AccountId, documentId, attachmentId);
 
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
 
             return result.Deserialize<AttachmentResponse>();
+        }
+
+        public async Task<List<AttachmentListItem>> ListAttachments(Guid documentId)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEndpoints.ListAttachments(AccountId, documentId);
+
+            var result = await HttpWrapper.RunGetQueryAsync(url, Token);
+
+            return result.Deserialize<List<AttachmentListItem>>();
+        }
+
+        public async Task DeleteAttachment(Guid documentId, Guid attachmentId)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEndpoints.DeleteAttachment(AccountId, documentId, attachmentId);
+
+            await HttpWrapper.RunDeleteAsync(url, Token);
+        }
+
+        public async Task<AttachmentResponse> UpdateAttachment(Guid documentId, UpdateAttachmentRequest request)
+        {
+            Token = OauthClient.GetAccessToken(Scope);
+            var url = BaseUrl + SignatureEndpoints.UpdateAttachment(AccountId, documentId);
+            var response = await HttpWrapper.RunPutAsync(url, request, Token);
+
+            return response.Deserialize<AttachmentResponse>();
         }
 
         public async Task<AttachmentFileResponse> GetAttachmentFile(Guid documentId, Guid attachmentId, FileFormat fileFormat)

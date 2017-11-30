@@ -33,7 +33,10 @@ namespace Idfy.Signature.Client.Client
         #region Attachments
 
         internal static string AddAttachment(Guid accountId) => $"api/attachments/{accountId}";
-        internal static string GetAttachment(Guid accountId, Guid id) => $"api/attachments/{accountId}/{id}";
+        internal static string GetAttachment(Guid accountId, Guid documentId, Guid id) => $"api/attachments/{accountId}/{documentId}/{id}";
+        internal static string DeleteAttachment(Guid accountId, Guid documentId, Guid id) => $"api/attachments/{accountId}/{documentId}/{id}";
+        internal static string UpdateAttachment(Guid accountId, Guid documentId) => $"api/attachments/{accountId}/{documentId}";
+        internal static string ListAttachments(Guid accountId, Guid documentId) => $"api/attachments/{accountId}/{documentId}";
 
 
         #endregion
