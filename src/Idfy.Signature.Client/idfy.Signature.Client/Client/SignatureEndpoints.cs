@@ -12,7 +12,7 @@ namespace Idfy.Signature.Client.Client
         internal static string Create(Guid accountId) => $"api/documents/{accountId}";
         internal static string Get(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}";
         internal static string Update(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}";
-        internal static string Cancel(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}/cancel";
+        internal static string Cancel(Guid accountId, Guid documentId, string reason) => $"api/documents/{accountId}/{documentId}/cancel?reason={reason}";
         internal static string Status(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}/status";
         internal static string GetSummary(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}/summary";
         internal static string GetList(Guid accountId) => $"api/documents/{accountId}/list";

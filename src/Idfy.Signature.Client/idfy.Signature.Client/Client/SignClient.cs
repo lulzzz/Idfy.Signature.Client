@@ -68,10 +68,10 @@ namespace Idfy.Signature.Client.Client
             return result.Deserialize<UpdateDocumentRequest>();
         }
 
-        public async Task CancelDocument(Guid documentId)
+        public async Task CancelDocument(Guid documentId, string reason)
         {
             Token = OauthClient.GetAccessToken(Scope);
-            var url = BaseUrl + SignatureEndpoints.Cancel(AccountId, documentId);
+            var url = BaseUrl + SignatureEndpoints.Cancel(AccountId, documentId, reason);
             await HttpWrapper.RunPutAsync(url, "", Token);
         }
 

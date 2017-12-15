@@ -103,7 +103,9 @@
         request,
         reminder,
         signatureReceipt,
-        finalReceipt
+        finalReceipt,
+        canceled,
+        expired
     }
 
     public enum NotificationSetting

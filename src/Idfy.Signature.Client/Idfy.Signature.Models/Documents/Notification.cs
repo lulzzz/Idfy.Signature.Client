@@ -25,6 +25,14 @@ namespace Idfy.Signature.Models.Documents
         /// Here you can setup email/sms notifications as a receipt for a signed document (when all the required signatures is registered). 
         /// </summary>
         public FinalReceipt FinalReceipt { get; set; }
+        /// <summary>
+        /// Here you can setup email/sms notifications as a receipt when a document is canceled and can no longer be signed. 
+        /// </summary>
+        public BaseNotification CanceledReceipt { get; set; }
+        /// <summary>
+        /// Here you can setup email/sms notifications as a receipt when a document is expired and can no longer be signed. 
+        /// </summary>
+        public BaseNotification ExpiredReceipt { get; set; }
 
     }
     /// <summary>

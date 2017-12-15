@@ -27,18 +27,22 @@ namespace Idfy.Signature.Client.Client
         /// <param name="documentId"></param>
         /// <returns></returns>
         Task<CreateDocumentResponse> GetDocument(Guid documentId);
+
         /// <summary>
         /// Update an asynchronous signing process
         /// </summary>
+        /// <param name="documentId"></param>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<UpdateDocumentRequest> UpdateDocument(Guid documentId, UpdateDocumentRequest request);
+
         /// <summary>
         /// Cancel an async sign job
         /// </summary>
         /// <param name="documentId"></param>
+        /// <param name="reason">Why is the document canceled?</param>
         /// <returns></returns>
-        Task CancelDocument(Guid documentId);
+        Task CancelDocument(Guid documentId, string reason);
         /// <summary>
         /// Get document status
         /// </summary>
@@ -158,6 +162,7 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="documentId"></param>
         /// <param name="signerId"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         Task<UpdateSignerRequest> UpdateSigner(Guid documentId, Guid signerId, UpdateSignerRequest request);
 
