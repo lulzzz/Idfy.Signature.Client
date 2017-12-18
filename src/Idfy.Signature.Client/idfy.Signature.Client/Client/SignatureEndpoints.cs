@@ -5,54 +5,68 @@ namespace Idfy.Signature.Client.Client
 {
     internal static class SignatureEndpoints
     {
-        internal const string BaseUrlProd = "https://sign-api.idfy.io/";
-        internal const string BaseUrlTest = "https://sign-api-test.idfy.io/";
+        internal const string BaseUrl = "https://api.idfy.io/signature";
 
         #region Documents
-        internal static string Create(Guid accountId) => $"api/documents/{accountId}";
-        internal static string Get(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}";
-        internal static string Update(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}";
-        internal static string Cancel(Guid accountId, Guid documentId, string reason) => $"api/documents/{accountId}/{documentId}/cancel?reason={reason}";
-        internal static string Status(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}/status";
-        internal static string GetSummary(Guid accountId, Guid documentId) => $"api/documents/{accountId}/{documentId}/summary";
-        internal static string GetList(Guid accountId) => $"api/documents/{accountId}/list";
-
+        
+        internal static string CreateDocument => $"{BaseUrl}/documents";
+        internal static string RetrieveDocument(Guid documentId) => $"{BaseUrl}/documents/{documentId}";
+        internal static string ListDocuments => $"{BaseUrl}/documents";
+        internal static string UpdateDocument(Guid documentId) => $"{BaseUrl}/documents/{documentId}";
+        internal static string CancelDocument(Guid documentId, string reason) => $"{BaseUrl}/documents/{documentId}/cancel?reason={reason}";
+        internal static string RetrieveDocumentStatus(Guid documentId) => $"{BaseUrl}/documents/{documentId}/status";
+        internal static string RetrieveDocumentSummary(Guid documentId) => $"{BaseUrl}/documents/{documentId}/summary";
+        internal static string ListDocumentSummaries => $"{BaseUrl}/documents/summary";
+        
         #endregion
 
 
         #region Files
 
-        internal static string GetDocumentFile(Guid accountId, Guid documentId, FileFormat? fileFormat) => $"api/files/{accountId}/{documentId}?fileFormat={fileFormat}";
-        internal static string GetAttachmentFile(Guid accountId, Guid documentId, Guid attachmentId, FileFormat? fileFormat) => $"api/files/attachment/{accountId}/{documentId}/{attachmentId}?fileFormat={fileFormat}";
-        internal static string GetSignerFile(Guid accountId, Guid documentId, Guid signerId, SignerFileFormat? fileFormat) => $"api/files/signer/{accountId}/{documentId}?fileFormat={fileFormat}&signerId={signerId}";
-        internal static string GetAttachmentSignerFile(Guid accountId, Guid documentId, Guid attachmentId, Guid signerId, SignerFileFormat? fileFormat) => $"api/files/signer/attachment/{accountId}/{documentId}/{attachmentId}?fileFormat={fileFormat}&signerId={signerId}";
+        internal static string RetrieveFile(Guid documentId, FileFormat? fileFormat) =>
+            $"{BaseUrl}/files/documents/{documentId}?fileFormat={fileFormat}";
 
+        internal static string RetrieveSignerFile(Guid documentId, Guid signerId, SignerFileFormat? fileFormat) =>
+            $"{BaseUrl}/files/documents/{documentId}/signers/{signerId}?fileFormat={fileFormat}";
+        
+        internal static string RetrieveAttachmentFile(Guid documentId, Guid attachmentId, FileFormat? fileFormat) =>
+            $"{BaseUrl}/files/documents/{documentId}/attachments/{attachmentId}?fileFormat={fileFormat}";
+
+        internal static string RetrieveAttachmentSignerFile(Guid documentId, Guid attachmentId, Guid signerId, SignerFileFormat? fileFormat) =>
+            $"{BaseUrl}/files/documents/{documentId}/attachments/{attachmentId}/signers/{signerId}?fileFormat={fileFormat}";
 
         #endregion
 
         #region Attachments
 
-        internal static string AddAttachment(Guid accountId) => $"api/attachments/{accountId}";
-        internal static string GetAttachment(Guid accountId, Guid documentId, Guid id) => $"api/attachments/{accountId}/{documentId}/{id}";
-        internal static string DeleteAttachment(Guid accountId, Guid documentId, Guid id) => $"api/attachments/{accountId}/{documentId}/{id}";
-        internal static string UpdateAttachment(Guid accountId, Guid documentId) => $"api/attachments/{accountId}/{documentId}";
-        internal static string ListAttachments(Guid accountId, Guid documentId) => $"api/attachments/{accountId}/{documentId}";
+        internal static string CreateAttachment(Guid documentId) => $"{BaseUrl}/documents/{documentId}/attachments";
+        internal static string RetrieveAttachment(Guid documentId, Guid id) => $"{BaseUrl}/documents/{documentId}/attachments/{id}";
 
+        internal static string DeleteAttachment(Guid documentId, Guid id) => $"{BaseUrl}/documents/{documentId}/attachments/{id}";
+        internal static string UpdateAttachment(Guid documentId, Guid id) => $"{BaseUrl}/documents/{documentId}/attachments/{id}";
+        internal static string ListAttachments(Guid documentId) => $"{BaseUrl}/documents/{documentId}/attachments";
 
         #endregion
 
-        internal static string GetSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}/{signerId}";
-        internal static string AddSigner(Guid accountId, Guid documentId) => $"api/signers/{accountId}/{documentId}";
-        internal static string RemoveSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}/{signerId}";
-        internal static string UpdateSigner(Guid accountId, Guid documentId, Guid signerId) => $"api/signers/{accountId}/{documentId}/{signerId}";
-        internal static string ListSigners(Guid accountId, Guid documentId) => $"api/signers/{accountId}/{documentId}";
-        public static string ValidateJwt(Guid accountId) => $"api/jwt/{accountId}";
-
+        #region Signers
+        
+        internal static string RetrieveSigner(Guid documentId, Guid signerId) => $"{BaseUrl}/documents/{documentId}/signers/{signerId}";
+        internal static string CreateSigner(Guid documentId) => $"{BaseUrl}/documents/{documentId}/signers";
+        internal static string DeleteSigner(Guid documentId, Guid signerId) => $"{BaseUrl}/documents/{documentId}/signers/{signerId}";
+        internal static string UpdateSigner(Guid documentId, Guid signerId) => $"{BaseUrl}/documents/{documentId}/signers/{signerId}";
+        internal static string ListSigners(Guid documentId) => $"{BaseUrl}/documents/{documentId}/signers";
+        
+        #endregion
+        
+        #region JWT
+        
+        public static string ValidateJwt => $"{BaseUrl}/jwt";
+        
+        #endregion
 
         #region Notifications
 
-        internal static string ListNotifications(Guid accountId, Guid documentId) => $"api/notifications/{accountId}/{documentId}";
-
+        internal static string ListNotifications(Guid documentId) => $"{BaseUrl}/documents/{documentId}/notifications";
 
         #endregion
 

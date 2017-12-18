@@ -6,7 +6,6 @@ namespace Idfy.Signature.Client.Client
 {
     public class BaseSignClient
     {
-        protected readonly Guid AccountId;
         private readonly string _oauthClientId;
         private readonly string _oauthSecret;
         protected readonly string Scope;
@@ -17,25 +16,22 @@ namespace Idfy.Signature.Client.Client
 
         protected string TokenEnpoint
         {
-            set { OauthClient = new OauthClient(_oauthClientId, _oauthSecret, value); }
+            set => OauthClient = new OauthClient(_oauthClientId, _oauthSecret, value);
         }
 
-        public BaseSignClient(Guid accountId, string oauthClientId, string oauthSecret, string scope = OauthScopes.Root, bool isProd = false)
+        public BaseSignClient(string oauthClientId, string oauthSecret, string scope = OauthScopes.Root, bool isProd = false)
         {
-            if (accountId.Equals(Guid.Empty))
-                throw new ArgumentNullException(nameof(accountId));
             if (string.IsNullOrEmpty(oauthClientId))
                 throw new ArgumentNullException(nameof(oauthClientId));
             if (string.IsNullOrEmpty(oauthSecret))
                 throw new ArgumentNullException(nameof(oauthSecret));
 
-            AccountId = accountId;
             _oauthClientId = oauthClientId;
             _oauthSecret = oauthSecret;
             Scope = scope;
             HttpWrapper = new HttpWrapper();
             TokenEnpoint = isProd ? OauthEnpoints.TokenEndpointProd : OauthEnpoints.TokenEndpointTest;
-            BaseUrl = isProd ? SignatureEndpoints.BaseUrlProd : SignatureEndpoints.BaseUrlTest;
+            BaseUrl = SignatureEndpoints.BaseUrl;
 
             if (!BaseUrl.EndsWith("/"))
                 BaseUrl += "/";

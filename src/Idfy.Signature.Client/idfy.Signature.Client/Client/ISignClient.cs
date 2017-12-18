@@ -21,12 +21,19 @@ namespace Idfy.Signature.Client.Client
         /// <param name="request"></param>
         /// <returns></returns>
         Task<CreateDocumentResponse> CreateDocument(CreateDocumentRequest request);
+        
         /// <summary>
         /// Get the entire document data object except data to sign
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<CreateDocumentResponse> GetDocument(Guid documentId);
+        Task<CreateDocumentResponse> RetrieveDocument(Guid documentId);
+
+        /// <summary>
+        /// List documents
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<CreateDocumentResponse>> ListDocuments();
 
         /// <summary>
         /// Update an asynchronous signing process
@@ -48,28 +55,29 @@ namespace Idfy.Signature.Client.Client
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<Status> GetDocumentStatus(Guid documentId);
+        Task<Status> RetrieveDocumentStatus(Guid documentId);
 
         /// <summary>
         /// Get information about a specific document
         /// </summary>
         /// <param name="documentId"></param>
         /// <returns></returns>
-        Task<DocumentSummary> GetDocumentSummary(Guid documentId);
+        Task<DocumentSummary> RetrieveDocumentSummary(Guid documentId);
+
         /// <summary>
         /// Query your documents
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<DocumentSummary> ListDocuments(ListDocumentsRequest request);
-
+        Task<IEnumerable<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request);
+        
         /// <summary>
         /// Get a document file
         /// </summary>
         /// <param name="documentId"></param>
         /// <param name="fileFormat"></param>
         /// <returns></returns>
-        Task<DocumentFileResponse> GetFile(Guid documentId, FileFormat fileFormat);
+        Task<DocumentFileResponse> RetrieveFile(Guid documentId, FileFormat fileFormat);
 
 
         /// <summary>
@@ -79,14 +87,15 @@ namespace Idfy.Signature.Client.Client
         /// <param name="signerId"></param>
         /// <param name="fileFormat"></param>
         /// <returns></returns>
-        Task<DocumentFileResponse> GetSignerFile(Guid documentId, Guid signerId, SignerFileFormat fileFormat);
+        Task<DocumentFileResponse> RetrieveSignerFile(Guid documentId, Guid signerId, SignerFileFormat fileFormat);
 
         /// <summary>
         /// Add an attachment to use in the sign process. Returns attachment ID
         /// </summary>
+        /// <param name="documentId"></param>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<Guid> AddAttachment(AttachmentRequest request);
+        Task<Guid> CreateAttachment(Guid documentId, AttachmentRequest request);
 
         /// <summary>
         /// Get an attachment
@@ -94,7 +103,7 @@ namespace Idfy.Signature.Client.Client
         /// <param name="documentId"></param>
         /// <param name="attachmentId"></param>
         /// <returns></returns>
-        Task<AttachmentResponse> GetAttachment(Guid documentId, Guid attachmentId);
+        Task<AttachmentResponse> RetrieveAttachment(Guid documentId, Guid attachmentId);
 
         /// <summary>
         /// List all attachments for a document
@@ -115,9 +124,10 @@ namespace Idfy.Signature.Client.Client
         /// Update an attachment on a specified document
         /// </summary>
         /// <param name="documentId"></param>
+        /// <param name="attachmentId"></param>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<AttachmentResponse> UpdateAttachment(Guid documentId, UpdateAttachmentRequest request);
+        Task<AttachmentResponse> UpdateAttachment(Guid documentId, Guid attachmentId, UpdateAttachmentRequest request);
 
         /// <summary>
         /// Get an attachment file
@@ -126,7 +136,7 @@ namespace Idfy.Signature.Client.Client
         /// <param name="attachmentId"></param>
         /// <param name="fileFormat"></param>
         /// <returns></returns>
-        Task<AttachmentFileResponse> GetAttachmentFile(Guid documentId, Guid attachmentId, FileFormat fileFormat);
+        Task<AttachmentFileResponse> RetrieveAttachmentFile(Guid documentId, Guid attachmentId, FileFormat fileFormat);
 
         /// <summary>
         /// Retrieves a signed attachment file for a specific signer
@@ -134,20 +144,21 @@ namespace Idfy.Signature.Client.Client
         /// <param name="documentId"></param>
         /// <param name="attachmentId"></param>
         /// <param name="signerId"></param>
+        /// <param name="fileFormat"></param>
         /// <returns></returns>
-        Task<AttachmentFileResponse> GetAttachmentFileForSigner(Guid documentId, Guid attachmentId, Guid signerId, SignerFileFormat fileFormat);
+        Task<AttachmentFileResponse> RetrieveAttachmentSignerFile(Guid documentId, Guid attachmentId, Guid signerId, SignerFileFormat fileFormat);
 
         /// <summary>
         /// Get a signer
         /// </summary>
         /// <returns></returns>
-        Task<SignerResponse> GetSigner(Guid documentId, Guid signerId);
+        Task<SignerResponse> RetrieveSigner(Guid documentId, Guid signerId);
         
         /// <summary>
         /// Adds a signer to an existing document
         /// </summary>
         /// <returns></returns>
-        Task<SignerResponse> AddSigner(Guid documentId, Signer signer);
+        Task<SignerResponse> CreateSigner(Guid documentId, Signer signer);
 
         /// <summary>
         /// Removes a signer from a document
@@ -155,7 +166,7 @@ namespace Idfy.Signature.Client.Client
         /// <param name="documentId"></param>
         /// <param name="signerId"></param>
         /// <returns></returns>
-        Task RemoveSigner(Guid documentId, Guid signerId);
+        Task DeleteSigner(Guid documentId, Guid signerId);
 
         /// <summary>
         /// Update a signer on a document

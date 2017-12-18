@@ -21,12 +21,12 @@ namespace Idfy.Signature.Client.Test
         public void Initialize()
         {
             Client = new SignClient(
-                Guid.Parse(Config.Get("AccountId")),
                 Config.Get("ClientId"),
                 Config.Get("ClientSecret"),
                 Config.Get("Scope"),
                 bool.Parse(Config.Get("IsProd"))
             );
+            
             var overrideBaseUrl = Config.Get("BaseUrlOverride");
             var overrideOauthUrl = Config.Get("OauthUrlOverride");
             if(!string.IsNullOrWhiteSpace(overrideBaseUrl))
@@ -63,7 +63,7 @@ namespace Idfy.Signature.Client.Test
             });
             Assert.IsNotNull(createResponse.Signers?[0]?.Url, "Failed to create test document");
             await Task.Delay(1000);
-            var getResponse = await Client.GetDocument(createResponse.DocumentId);
+            var getResponse = await Client.RetrieveDocument(createResponse.DocumentId);
             Assert.AreEqual(createResponse.Title, getResponse.Title);
             Assert.AreEqual(createResponse.Description, getResponse.Description);
         }
