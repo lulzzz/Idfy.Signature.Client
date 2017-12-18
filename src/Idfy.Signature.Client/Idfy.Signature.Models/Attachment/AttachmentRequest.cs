@@ -8,11 +8,6 @@ namespace Idfy.Signature.Models.Attachment
     public class AttachmentRequest
     {
         /// <summary>
-        /// The document Id you retrieved when you created a new signature job
-        /// </summary>
-        [Required]
-        public Guid DocumentId { get; set; }
-        /// <summary>
         /// Filename with file extension. <span style="color:red;">We only support PDF for attachments</span>
         /// </summary>
         [Required]
