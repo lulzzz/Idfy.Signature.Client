@@ -2,15 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Idfy.Signature.Client.Client;
-using Idfy.Signature.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Idfy.Signature.Models;
-using System.Configuration;
 using Idfy.Signature.Models.Signers;
 using Idfy.Signature.Models.Misc;
 
 namespace Idfy.Signature.Client.Test
 {
+    [Ignore]
     [TestClass]
     public class SignClientTest
     {
