@@ -14,7 +14,6 @@ namespace Idfy.Signature.Client.Test
     [TestClass]
     public class SignClientTest
     {
-
         private ISignClient Client { get; set; }
 
         [TestInitialize]
