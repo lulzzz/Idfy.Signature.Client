@@ -30,7 +30,7 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public long? LastUpdated { get; set; }
         /// <summary>
-        /// The sign deadline for the document
+        /// The sign deadline for the document (Unix UTC)
         /// </summary>
         public long? Deadline { get; set; }
         /// <summary>

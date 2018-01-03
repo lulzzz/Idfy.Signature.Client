@@ -56,7 +56,7 @@ namespace Idfy.Signature.Models.Misc
     public class TimeToLive
     {
         /// <summary>
-        /// Define when the document should expire (utc date in ticks), document is not signable after this (Default/maximum 45 days)
+        /// Define when the document should expire (unix time - UTC), document is not signable after this (Default/maximum 45 days)
         /// </summary>
         public long Deadline { get; set; }
         /// <summary>
