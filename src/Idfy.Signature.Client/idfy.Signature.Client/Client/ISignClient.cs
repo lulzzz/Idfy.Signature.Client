@@ -68,8 +68,9 @@ namespace Idfy.Signature.Client.Client
         /// Query your documents
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="nextLink">If you have multiple pages with result, insert the nextlink you retrive here</param>
         /// <returns></returns>
-        Task<IEnumerable<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request);
+        Task<ListResult<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request, string nextLink = null);
         
         /// <summary>
         /// Get a document file

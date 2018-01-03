@@ -13,7 +13,6 @@ namespace Idfy.Signature.Client.Client
 {
     public class SignClient : BaseSignClient, ISignClient
     {
-
         public SignClient(string oauthClientId, string oauthSecret, string scope = OauthScopes.Root, bool isProd = false) :
             base(oauthClientId, oauthSecret, scope, isProd)
         {
@@ -21,7 +20,6 @@ namespace Idfy.Signature.Client.Client
 
         public string OverrideBaseUrl
         {
-
             set
             {
                 if (!value.EndsWith("/"))
@@ -39,7 +37,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.CreateDocument}";
-                
+
             var result = await HttpWrapper.RunPostAsync(url, request, Token);
             return result.Deserialize<CreateDocumentResponse>();
         }
@@ -48,16 +46,16 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveDocument(documentId)}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<CreateDocumentResponse>();
         }
-        
+
         public async Task<IEnumerable<CreateDocumentResponse>> ListDocuments()
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.ListDocuments}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<List<CreateDocumentResponse>>();
         }
@@ -66,7 +64,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.UpdateDocument(documentId)}";
-            
+
             var result = await HttpWrapper.RunPatchAsync(url, request, Token);
             return result.Deserialize<UpdateDocumentRequest>();
         }
@@ -75,7 +73,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.CancelDocument(documentId, reason)}";
-            
+
             await HttpWrapper.RunPostAsync(url, "", Token);
         }
 
@@ -83,76 +81,90 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveDocumentStatus(documentId)}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<Status>();
         }
-        
+
         public async Task<DocumentSummary> RetrieveDocumentSummary(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveDocumentSummary(documentId)}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<DocumentSummary>();
         }
 
-        public async Task<IEnumerable<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request)
+        public async Task<ListResult<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request, string nexLink = null)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.ListDocumentSummaries}";
 
-            if (!string.IsNullOrEmpty(request.ExternalId))
+            if (!string.IsNullOrEmpty(nexLink))
             {
-                url += $"&externalId={request.ExternalId}";
+                url = nexLink;
             }
-            if (!string.IsNullOrEmpty(request.NameOfSigner))
+            else
             {
-                url += $"&nameOfSigner={request.NameOfSigner}";
+                if (!string.IsNullOrEmpty(request.ExternalId))
+                {
+                    url += $"&externalId={request.ExternalId}";
+                }
+                if (!string.IsNullOrEmpty(request.NameOfSigner))
+                {
+                    url += $"&nameOfSigner={request.NameOfSigner}";
+                }
+                if (!string.IsNullOrEmpty(request.Tags))
+                {
+                    url += $"&tags={request.Tags}";
+                }
+                if (request.FromDate != null)
+                {
+                    url += $"&fromDate={request.FromDate}";
+                }
+                if (request.ToDate != null)
+                {
+                    url += $"&toDate={request.ToDate}";
+                }
+                if (request.SignedDate != null)
+                {
+                    url += $"&signedDate={request.SignedDate}";
+                }
+                if (request.SignerId != null)
+                {
+                    url += $"&signerId={request.SignerId}";
+                }
+                if (!string.IsNullOrEmpty(request.ExternalSignerId))
+                {
+                    url += $"&externalSignerId={request.ExternalSignerId}";
+                }
+                if (request.LastUpdated != null)
+                {
+                    url += $"&lastUpdated={request.LastUpdated}";
+                }
+                if (request.Status != null)
+                {
+                    url += $"&status={request.Status}";
+                }
+                if (request.PageSize > 0 & request.PageSize <= 1000)
+                {
+                    url += $"&pageSize={request.PageSize}";
+                }
+                if (request.Skip >= 0)
+                {
+                    url += $"&skip={request.Skip}";
+                }
             }
-            if (!string.IsNullOrEmpty(request.Tags))
-            {
-                url += $"&tags={request.Tags}";
-            }
-            if (request.FromDate != null)
-            {
-                url += $"&fromDate={request.FromDate}";
-            }
-            if (request.ToDate != null)
-            {
-                url += $"&toDate={request.ToDate}";
-            }
-            if (request.SignedDate != null)
-            {
-                url += $"&signedDate={request.SignedDate}";
-            }
-            if (request.SignerId != null)
-            {
-                url += $"&signerId={request.SignerId}";
-            }
-            if (!string.IsNullOrEmpty(request.ExternalSignerId))
-            {
-                url += $"&externalSignerId={request.ExternalSignerId}";
-            }
-            if (request.LastUpdated != null)
-            {
-                url += $"&lastUpdated={request.LastUpdated}";
-            }
-            if (request.Status != null)
-            {
-                url += $"&status={request.Status}";
-            }
-
             url = url.ReplaceFirst("&", "?");
             var result = await HttpWrapper.RunPostAsync(url, request, Token);
-            return result.Deserialize<IEnumerable<DocumentSummary>>();
+            return result.Deserialize<ListResult<DocumentSummary>>();
         }
 
         public async Task<IEnumerable<NotificationLogItem>> ListNotifications(Guid documentId)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.ListNotifications(documentId)}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<List<NotificationLogItem>>();
         }
@@ -161,28 +173,28 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveFile(documentId, fileFormat)}";
-            
+
             var result = await HttpWrapper.RunDownloadAsync(url, Token);
             return new DocumentFileResponse()
             {
                 Document = result.Bytes,
                 DocumentId = documentId,
                 FileFormat = fileFormat,
-                FileName=result.Filename,
+                FileName = result.Filename,
             };
         }
 
-        public async  Task<DocumentFileResponse> RetrieveSignerFile(Guid documentId, Guid signerId, SignerFileFormat fileFormat)
+        public async Task<DocumentFileResponse> RetrieveSignerFile(Guid documentId, Guid signerId, SignerFileFormat fileFormat)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveSignerFile(documentId, signerId, fileFormat)}";
-            
+
             var result = await HttpWrapper.RunDownloadAsync(url, Token);
             return new DocumentFileResponse()
             {
                 Document = result.Bytes,
                 DocumentId = documentId,
-                FileFormat = fileFormat==SignerFileFormat.native ? FileFormat.native : FileFormat.standard_packaging,
+                FileFormat = fileFormat == SignerFileFormat.native ? FileFormat.native : FileFormat.standard_packaging,
                 FileName = result.Filename,
             };
         }
@@ -192,7 +204,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.CreateAttachment(documentId)}";
-            
+
             var result = await HttpWrapper.RunPostAsync(url, request, Token);
             var attachment = result.Deserialize<AttachmentResponse>();
             return attachment.Id;
@@ -202,7 +214,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveAttachment(documentId, attachmentId)}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<AttachmentResponse>();
         }
@@ -211,7 +223,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.ListAttachments(documentId)}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<List<AttachmentListItem>>();
         }
@@ -220,7 +232,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.DeleteAttachment(documentId, attachmentId)}";
-            
+
             await HttpWrapper.RunDeleteAsync(url, Token);
         }
 
@@ -228,8 +240,8 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.UpdateAttachment(documentId, attachmentId)}";
-            
-            var response = await HttpWrapper.RunPatchAsync(url, request,Token);
+
+            var response = await HttpWrapper.RunPatchAsync(url, request, Token);
             return response.Deserialize<AttachmentResponse>();
         }
 
@@ -237,7 +249,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveAttachmentFile(documentId, attachmentId, fileFormat)}";
-            
+
             var result = await HttpWrapper.RunDownloadAsync(url, Token);
             return new AttachmentFileResponse()
             {
@@ -254,7 +266,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveAttachmentSignerFile(documentId, attachmentId, signerId, fileFormat)}";
-            
+
             var result = await HttpWrapper.RunDownloadAsync(url, Token);
             return new AttachmentFileResponse()
             {
@@ -270,7 +282,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.RetrieveSigner(documentId, signerId)}";
-            
+
             var result = await HttpWrapper.RunGetQueryAsync(url, Token);
             return result.Deserialize<SignerResponse>();
         }
@@ -279,7 +291,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.CreateSigner(documentId)}";
-            
+
             var result = await HttpWrapper.RunPostAsync(url, signer, Token);
             return result.Deserialize<SignerResponse>();
         }
@@ -288,7 +300,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.DeleteSigner(documentId, signerId)}";
-            
+
             await HttpWrapper.RunDeleteAsync(url, Token);
         }
 
@@ -296,7 +308,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.UpdateSigner(documentId, signerId)}";
-            
+
             var result = await HttpWrapper.RunPatchAsync(url, request, Token);
             return result.Deserialize<UpdateSignerRequest>();
         }
@@ -305,7 +317,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.ListSigners(documentId)}";
-            
+
             var response = await HttpWrapper.RunGetQueryAsync(url, Token);
             return response.Deserialize<IEnumerable<SignerResponse>>();
         }
@@ -314,7 +326,7 @@ namespace Idfy.Signature.Client.Client
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.ValidateJwt}";
-            
+
             var response = await HttpWrapper.RunPostAsync(url, jwt, Token);
             return response.Deserialize<JwtValidationResponse>();
         }
