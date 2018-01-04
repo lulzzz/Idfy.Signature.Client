@@ -52,13 +52,5 @@ namespace Idfy.Signature.Models.Documents
         /// Documents created before this date
         /// </summary>
         public long? ToDate { get; set; }
-        /// <summary>
-        /// Number of pages to skip
-        /// </summary>
-        public int Skip { get; set; }
-        /// <summary>
-        /// Number of results in each page (max 1000)
-        /// </summary>
-        public int PageSize { get; set; }
     }
 }
