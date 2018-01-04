@@ -95,14 +95,14 @@ namespace Idfy.Signature.Client.Client
             return result.Deserialize<DocumentSummary>();
         }
 
-        public async Task<ListResult<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request, string nexLink = null)
+        public async Task<CollectionWithPaging<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request, string paginationLink = null, int limit = 100)
         {
             Token = OauthClient.GetAccessToken(Scope);
             var url = $"{BaseUrl}{SignatureEndpoints.ListDocumentSummaries}";
 
-            if (!string.IsNullOrEmpty(nexLink))
+            if (!string.IsNullOrEmpty(paginationLink))
             {
-                url = nexLink;
+                url = paginationLink;
             }
             else
             {
@@ -146,18 +146,14 @@ namespace Idfy.Signature.Client.Client
                 {
                     url += $"&status={request.Status}";
                 }
-                if (request.PageSize > 0 & request.PageSize <= 1000)
+                if (limit > 0 && limit < 1000)
                 {
-                    url += $"&pageSize={request.PageSize}";
-                }
-                if (request.Skip >= 0)
-                {
-                    url += $"&skip={request.Skip}";
+                    url += $"&limit={limit}";
                 }
             }
             url = url.ReplaceFirst("&", "?");
             var result = await HttpWrapper.RunPostAsync(url, request, Token);
-            return result.Deserialize<ListResult<DocumentSummary>>();
+            return result.Deserialize<CollectionWithPaging<DocumentSummary>>();
         }
 
         public async Task<IEnumerable<NotificationLogItem>> ListNotifications(Guid documentId)

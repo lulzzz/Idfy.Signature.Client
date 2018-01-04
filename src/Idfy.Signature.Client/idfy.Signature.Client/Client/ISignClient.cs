@@ -68,9 +68,10 @@ namespace Idfy.Signature.Client.Client
         /// Query your documents
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="nextLink">If you have multiple pages with result, insert the nextlink you retrive here</param>
+        /// <param name="paginationLink">Insert pagination link here after your first request (next, first or previous)</param>
+        /// <param name="limit">Limit how many results per page (max 1000)</param>
         /// <returns></returns>
-        Task<ListResult<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request, string nextLink = null);
+        Task<CollectionWithPaging<DocumentSummary>> ListDocumentSummaries(ListDocumentsRequest request, string paginationLink = null, int limit = 100);
         
         /// <summary>
         /// Get a document file
