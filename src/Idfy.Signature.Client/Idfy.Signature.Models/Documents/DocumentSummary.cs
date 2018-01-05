@@ -65,5 +65,13 @@ namespace Idfy.Signature.Models.Documents
         /// A list of attachment Id's
         /// </summary>
         public List<Guid> Attachments { get; set; }
+        /// <summary>
+        /// A list of all the signers on the document
+        /// </summary>
+        public List<Guid> Signers { get; set; }
+        /// <summary>
+        /// When the document was created, unix timestamp
+        /// </summary>
+        public long Created { get; set; }
     }
 }
