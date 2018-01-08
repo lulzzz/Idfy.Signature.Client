@@ -50,9 +50,9 @@ namespace Idfy.Signature.Models.JWT
         /// </summary>
         public SignSuccess SignSuccess { get; set; }
         /// <summary>
-        /// When the jwt expires
+        /// When the jwt expires (unix timestamp)
         /// </summary>
-        public DateTime Expires { get; set; }
+        public long Expires { get; set; }
         /// <summary>
         /// Set to true if user aborted
         /// </summary>
