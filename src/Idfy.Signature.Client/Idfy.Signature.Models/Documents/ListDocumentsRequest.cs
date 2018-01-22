@@ -9,15 +9,15 @@ namespace Idfy.Signature.Models.Documents
     public class ListDocumentsRequest
     {
         /// <summary>
-        /// Show documents created from a specific date (in ticks)
+        /// Show documents created from a specific date (unix timestap)
         /// </summary>
         public long? FromDate { get; set; }
         /// <summary>
-        /// Show documents created from a specific last updated date (in ticks)
+        /// Show documents created from a specific last updated date (unix timestamp)
         /// </summary>
         public long? LastUpdated { get; set; }
         /// <summary>
-        /// Show documents signed from a specific date (in ticks)
+        /// Show documents signed from a specific date (unix timestamp)
         /// </summary>
         public long? SignedDate { get; set; }
         /// <summary>

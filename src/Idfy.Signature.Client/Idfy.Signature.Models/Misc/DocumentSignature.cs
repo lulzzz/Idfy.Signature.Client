@@ -51,10 +51,22 @@ namespace Idfy.Signature.Models.Misc
         /// <summary>
         /// The signers social security number, this will get a value if you specified that you wanted social security number in your request (if you are allowed to)
         /// </summary>
-        public string SocialSecurityNumber { get; set; }
+        public SocialSecurityNumber SocialSecurityNumber { get; set; }
         /// <summary>
         /// The Ip address of the signer
         /// </summary>
         public string ClientIp { get; set; }
+    }
+
+    public class SocialSecurityNumber
+    {
+        /// <summary>
+        /// The social security number
+        /// </summary>
+        public string Value { get; set; }
+        /// <summary>
+        /// Iso 3166-1 Alfa-2 (2 letters) country code
+        /// </summary>
+        public string CountryCode { get; set; }
     }
 }
