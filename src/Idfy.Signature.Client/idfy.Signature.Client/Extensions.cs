@@ -93,5 +93,21 @@ namespace Idfy.Signature.Client
             }
             return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
+
+        public static DateTime ParseFromIso8601(this string isoDate)
+        {
+            return DateTime.Parse(isoDate, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind).ToUniversalTime();
+        }
+
+        public static bool TryParseFromIso8601(this string isoDate, out DateTime dateTime)
+        {
+            return DateTime.TryParse(isoDate, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out dateTime);
+        }
+
+        public static string ToIso8601Date(this DateTime date)
+        {
+            date = date.ToUniversalTime();
+            return $"{date:s}Z";
+        }
     }
 }
