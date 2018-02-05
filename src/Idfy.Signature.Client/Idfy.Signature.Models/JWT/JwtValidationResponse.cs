@@ -50,9 +50,9 @@ namespace Idfy.Signature.Models.JWT
         /// </summary>
         public SignSuccess SignSuccess { get; set; }
         /// <summary>
-        /// When the jwt expires (unix timestamp)
+        /// When the jwt expires (ISO 8601)
         /// </summary>
-        public long Expires { get; set; }
+        public string Expires { get; set; }
         /// <summary>
         /// Set to true if user aborted
         /// </summary>
@@ -97,9 +97,9 @@ namespace Idfy.Signature.Models.JWT
         /// </summary>
         public SignatureMethod SignatureMethod { get; set; }
         /// <summary>
-        /// Signed time
+        /// Signed time (ISO 8601)
         /// </summary>
-        public long? SignedTime { get; set; }
+        public string SignedTime { get; set; }
     }
 
 }

@@ -9,17 +9,17 @@ namespace Idfy.Signature.Models.Documents
     public class ListDocumentsRequest
     {
         /// <summary>
-        /// Show documents created from a specific date (unix timestap)
+        /// Show documents created from a specific date (ISO 8601)
         /// </summary>
-        public long? FromDate { get; set; }
+        public string FromDate { get; set; }
         /// <summary>
-        /// Show documents created from a specific last updated date (unix timestamp)
+        /// Show documents created from a specific last updated date (ISO 8601)
         /// </summary>
-        public long? LastUpdated { get; set; }
+        public string LastUpdated { get; set; }
         /// <summary>
-        /// Show documents signed from a specific date (unix timestamp)
+        /// Show documents signed from a specific date (ISO 8601)
         /// </summary>
-        public long? SignedDate { get; set; }
+        public string SignedDate { get; set; }
         /// <summary>
         /// Filter on document status
         /// </summary>
@@ -49,8 +49,8 @@ namespace Idfy.Signature.Models.Documents
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Documents created before this date
+        /// Documents created before this date (ISO 8601)
         /// </summary>
-        public long? ToDate { get; set; }
+        public string ToDate { get; set; }
     }
 }

@@ -37,9 +37,9 @@ namespace Idfy.Signature.Models.Misc
         /// </summary>
         public string MiddleName { get; set; }
         /// <summary>
-        /// The time signature was registered (unix format)
+        /// The time signature was registered (ISO 8601)
         /// </summary>
-        public long? SignedTime { get; set; }
+        public string SignedTime { get; set; }
         /// <summary>
         /// The signers date of birth (ddMMyy)
         /// </summary>

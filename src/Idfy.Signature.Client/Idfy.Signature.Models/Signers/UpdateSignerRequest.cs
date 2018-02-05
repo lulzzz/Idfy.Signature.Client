@@ -39,8 +39,8 @@ namespace Idfy.Signature.Models.Signers
         /// </summary>
         public bool? Required { get; set; }
         /// <summary>
-        /// How long before the signers url should expire? Utc date as unix timestamp. This can be set if you only want a limited time to live for each sign url (If you generate a new url at a later time this will also have this limited lifetime). Defaults to the document lifetime.
+        /// How long before the signers url should expire? (ISO 8601). This can be set if you only want a limited time to live for each sign url (If you generate a new url at a later time this will also have this limited lifetime). Defaults to the document lifetime.
         /// </summary>
-        public long? SignUrlExpires { get; set; }
+        public string SignUrlExpires { get; set; }
     }
 }

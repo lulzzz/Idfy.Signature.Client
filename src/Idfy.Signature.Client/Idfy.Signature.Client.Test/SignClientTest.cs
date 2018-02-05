@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Idfy.Signature.Client.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -47,6 +48,7 @@ namespace Idfy.Signature.Client.Test
         {
             var response = await CreateDoc();
             Assert.IsNotNull(response.Signers?[0]?.Url);
+
         }
 
         [TestMethod]
