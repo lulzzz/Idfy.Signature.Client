@@ -28,15 +28,15 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// When was the document last updated (ISO8601)
         /// </summary>
-        public string LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
         /// <summary>
         /// The sign deadline for the document (ISO8601)
         /// </summary>
-        public string Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         /// <summary>
         /// When was all the signatures processed (ISO8601)
         /// </summary>
-        public string SignedDate { get; set; }
+        public DateTime? SignedDate { get; set; }
         /// <summary>
         /// Document status
         /// </summary>
@@ -72,6 +72,6 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// When the document was created (ISO 8601)
         /// </summary>
-        public string Created { get; set; }
+        public DateTime? Created { get; set; }
     }
 }

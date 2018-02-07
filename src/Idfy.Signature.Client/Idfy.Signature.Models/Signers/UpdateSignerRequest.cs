@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Idfy.Signature.Models.Misc;
 using System.ComponentModel.DataAnnotations;
 
@@ -41,6 +42,6 @@ namespace Idfy.Signature.Models.Signers
         /// <summary>
         /// How long before the signers url should expire? (ISO 8601). This can be set if you only want a limited time to live for each sign url (If you generate a new url at a later time this will also have this limited lifetime). Defaults to the document lifetime.
         /// </summary>
-        public string SignUrlExpires { get; set; }
+        public DateTime? SignUrlExpires { get; set; }
     }
 }

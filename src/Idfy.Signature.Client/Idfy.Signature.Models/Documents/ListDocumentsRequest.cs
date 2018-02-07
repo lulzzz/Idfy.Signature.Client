@@ -11,15 +11,15 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Show documents created from a specific date (ISO 8601)
         /// </summary>
-        public string FromDate { get; set; }
+        public DateTime? FromDate { get; set; }
         /// <summary>
         /// Show documents created from a specific last updated date (ISO 8601)
         /// </summary>
-        public string LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
         /// <summary>
         /// Show documents signed from a specific date (ISO 8601)
         /// </summary>
-        public string SignedDate { get; set; }
+        public DateTime? SignedDate { get; set; }
         /// <summary>
         /// Filter on document status
         /// </summary>
@@ -51,6 +51,6 @@ namespace Idfy.Signature.Models.Documents
         /// <summary>
         /// Documents created before this date (ISO 8601)
         /// </summary>
-        public string ToDate { get; set; }
+        public DateTime? ToDate { get; set; }
     }
 }

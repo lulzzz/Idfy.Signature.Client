@@ -52,7 +52,7 @@ namespace Idfy.Signature.Models.JWT
         /// <summary>
         /// When the jwt expires (ISO 8601)
         /// </summary>
-        public string Expires { get; set; }
+        public DateTime? Expires { get; set; }
         /// <summary>
         /// Set to true if user aborted
         /// </summary>
@@ -99,7 +99,7 @@ namespace Idfy.Signature.Models.JWT
         /// <summary>
         /// Signed time (ISO 8601)
         /// </summary>
-        public string SignedTime { get; set; }
+        public DateTime? SignedTime { get; set; }
     }
 
 }

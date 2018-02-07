@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Idfy.Signature.Models.Misc
@@ -58,7 +59,7 @@ namespace Idfy.Signature.Models.Misc
         /// <summary>
         /// Define when the document should expire (ISO 8601), document is not signable after this (Default/maximum 45 days)
         /// </summary>
-        public string Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         /// <summary>
         /// How many hours should we keep the document after it is signed? Default/ maximum  7 days (168 hours)
         /// </summary>

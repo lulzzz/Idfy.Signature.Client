@@ -39,7 +39,7 @@ namespace Idfy.Signature.Models.Misc
         /// <summary>
         /// The time signature was registered (ISO 8601)
         /// </summary>
-        public string SignedTime { get; set; }
+        public DateTime? SignedTime { get; set; }
         /// <summary>
         /// The signers date of birth (ddMMyy)
         /// </summary>
